@@ -18,9 +18,9 @@ public class Pizza {
 	 */
 	public Pizza (String inName, char inType, ArrayList <Ingredient> inIngredients)
 	{
-		pizzaName = inName;
-		pizzaType = inType;
-		ingredients = inIngredients;
+		this.pizzaName = inName;
+		this.pizzaType = inType;
+		this.ingredients = inIngredients;
 	}
 
 	/*

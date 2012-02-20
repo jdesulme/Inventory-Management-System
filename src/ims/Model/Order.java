@@ -21,10 +21,10 @@ public class Order {
 	 */
 	public Order (int inID, String inDate, double inCost, ArrayList <Ingredient> inIngredients)
 	{
-		orderID = inID;
-		orderDate = inDate;
-		orderCost = inCost;
-		ingredients = inIngredients;
+		this.orderID = inID;
+		this.orderDate = inDate;
+		this.orderCost = inCost;
+		this.ingredients = inIngredients;
 	}
 
 	/*

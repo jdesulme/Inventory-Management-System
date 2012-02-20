@@ -18,9 +18,9 @@ public class Branch {
 	 */
 	public Branch (String inName, String inAddress, String inPhone, String cityOrProvince)
 	{
-		branchName = inName;
-		branchAddress = inAddress;
-		branchPhone = inPhone;
+		this.branchName = inName;
+		this.branchAddress = inAddress;
+		this.branchPhone = inPhone;
 		this.cityOrProvince = cityOrProvince;		
 	}
 	
