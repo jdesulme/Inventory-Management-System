@@ -1,12 +1,12 @@
 /**
  * 
  */
-package ims.Controller;
+package ims.Model;
 
 /**
  * @author kumar
  *
  */
-public class Information {
+public class UIEstimate {
 
 }

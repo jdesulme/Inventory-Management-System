@@ -6,7 +6,11 @@ package ims.Model;
  */
 
 public enum Event {
-	Initialize,
-	EvaluateInventory,
-	EstimateQuantity
-}
+	INTIALIZE (0),
+	EVALUATE_INVENTORY (1),
+	ESTIMATE_QUANTITY (2);
+	private int event ;
+	Event(int event){
+		this.event = event;
+	}
+};
