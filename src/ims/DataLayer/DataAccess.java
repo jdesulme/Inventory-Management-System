@@ -4,7 +4,7 @@
 package ims.DataLayer;
 
 /**
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
 public class DataAccess {

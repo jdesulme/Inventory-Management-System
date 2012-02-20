@@ -5,7 +5,7 @@ package ims.Controller;
 
 /**
  * Rules class that converts units
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
 public class Rules {

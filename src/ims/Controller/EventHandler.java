@@ -6,7 +6,7 @@ package ims.Controller;
 import ims.Model.*;
 
 /**
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
 public class  EventHandler {

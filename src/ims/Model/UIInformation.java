@@ -4,7 +4,7 @@
 package ims.Model;
 
 /**
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
 public class UIInformation extends EntityBase {

@@ -4,7 +4,7 @@
 package ims.Controller;
 
 /**
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
 public class Information {

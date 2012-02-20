@@ -4,9 +4,9 @@
 package ims.Model;
 
 /**
- * @author kumar
+ * @author Minh, Kumar, Jean
  *
  */
-public class UIEstimation {
+public class UIEstimation extends EntityBase {
 
 }
