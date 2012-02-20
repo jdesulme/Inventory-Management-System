@@ -9,7 +9,9 @@ public enum Event {
 	INTIALIZE (0),
 	EVALUATE_INVENTORY (1),
 	ESTIMATE_QUANTITY (2);
-	private int event ;
+	
+	private int event;
+	
 	Event(int event){
 		this.event = event;
 	}

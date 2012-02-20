@@ -17,10 +17,8 @@ public class Program {
 	 * @param args
 	 */
 	private EntityBase UIData;
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
 		Program program = new Program();
 		Event event = program.GetEvent();
 		
@@ -42,7 +40,7 @@ public class Program {
 			System.out.println("2.Estimate qunatity of Ingredients");
 			Scanner scan = new Scanner(System.in);
 			option = scan.nextInt();
-		}while(option<0 || option>2);
+		} while(option<0 || option>2);
 		
 		Event event = null;
 		
@@ -67,6 +65,8 @@ public class Program {
 		uiData.Year = scan.nextInt();
 		System.out.println("Enter the month to get inventory information");
 		uiData.Month = scan.nextInt();
+		
+		
 		return uiData;
 	}
 
