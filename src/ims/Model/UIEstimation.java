@@ -7,6 +7,6 @@ package ims.Model;
  * @author kumar
  *
  */
-public class UIEstimate {
+public class UIEstimation {
 
 }

@@ -44,13 +44,14 @@ public class Program {
 		
 		Event event = null;
 		
-		if(option ==1){
+		if (option == 1){
 			
 			event = Event.EVALUATE_INVENTORY;
 			UIData = GetInformationData();
 		}
-		else if(option == 2){
+		else if (option == 2){
 			event = Event.ESTIMATE_QUANTITY;
+			
 		}
 		return event;		
 	}
@@ -58,6 +59,7 @@ public class Program {
 	private UIInformation GetInformationData(){
 		
 		UIInformation uiData = new UIInformation();
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the Location");
 		uiData.Locality = Location.valueOf(scan.next());
@@ -66,8 +68,17 @@ public class Program {
 		System.out.println("Enter the month to get inventory information");
 		uiData.Month = scan.nextInt();
 		
-		
 		return uiData;
 	}
 
+	private UIEstimation GetEstimationData(){
+		UIEstimation uiData = new UIEstimation();
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the number of pizzas made");
+		
+		
+		return uiData;
+		
+	}
 }
