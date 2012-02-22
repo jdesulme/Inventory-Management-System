@@ -4,6 +4,9 @@
 package ims.View;
 
 import java.util.Scanner;
+
+import javax.xml.bind.ParseConversionEvent;
+
 import ims.Model.*;
 import ims.Controller.*;
 
@@ -60,14 +63,57 @@ public class Program {
 		
 		UIInformation uiData = new UIInformation();
 		
+		boolean isValid = false;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter the Location");
-		uiData.Locality = Location.valueOf(scan.next());
-		System.out.println("Enter the Year to get inventory information");
-		uiData.Year = scan.nextInt();
-		System.out.println("Enter the month to get inventory information");
-		uiData.Month = scan.nextInt();
+		String value;
+		while(!isValid){
+			
+			System.out.print("Enter the Location (");
+			for(Location locValue :Location.values() ){
+				System.out.print(locValue + ", ");
+			}
+			System.out.println(")");
+			
+			value = scan.next();
+			
+			for(Location locValue :Location.values() ){
+				
+				if(locValue.toString().equalsIgnoreCase(value)){
+					isValid = true;
+					uiData.Locality = locValue;
+					break;
+				}
+				
+			}
+		}
 		
+
+		isValid = false; // Get ready for next validation
+		while(!isValid){
+			
+			System.out.println("Enter the Year to get inventory information(2011)");
+			value = scan.next();
+			
+			 if(IsToInteger(value)){
+				 uiData.Year = Integer.parseInt(value);
+				 if(uiData.Year > 0 && value.length()==4){
+					 isValid = true;
+				 }
+			 }
+		}
+		
+		isValid = false; // Get ready for next validation
+		while(!isValid){
+			System.out.println("Enter the month to get inventory information");
+			value = scan.next();
+			
+			 if(IsToInteger(value)){
+				 uiData.Month = Integer.parseInt(value);
+				 if(uiData.Month > 0 && uiData.Month<13){
+					 isValid = true;
+				 }
+			 }
+		}
 		return uiData;
 	}
 	
@@ -84,5 +130,18 @@ public class Program {
 		
 		return uiData;
 		
+	}
+	
+	private boolean IsToInteger(String value){
+		boolean isParsed = false;
+		
+		try {			
+			Integer.parseInt(value);
+			isParsed = true;
+		}
+		catch(NumberFormatException ex){
+			
+		}
+		return isParsed;
 	}
 }
