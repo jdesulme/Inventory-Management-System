@@ -97,5 +97,11 @@ public class Order {
 		this.ingredients = ingredients;
 	}
 	
+	/*
+	 * Method to add an ingredient to order object 
+	 */
+	public void addIngredient(Ingredient ingredient){
+		this.ingredients.add(ingredient);
+	}
 	
 }

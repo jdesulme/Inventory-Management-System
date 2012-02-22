@@ -24,9 +24,9 @@ public class Program {
 	public static void main(String[] args) {
 		Program program = new Program();
 		Event event = program.GetEvent();
-		
-		if(EventHandler.HandleEvent(event,program.UIData)){
-			
+		EventHandler eventHandler = new EventHandler(event);
+		if(eventHandler.HandleEvent(program.UIData)){
+			eventHandler.DisplayResult();
 		}
 		else{
 			System.out.println("Error Occured");
@@ -66,6 +66,7 @@ public class Program {
 		boolean isValid = false;
 		Scanner scan = new Scanner(System.in);
 		String value;
+		//Get the location
 		while(!isValid){
 			
 			System.out.print("Enter the Location (");
@@ -87,14 +88,15 @@ public class Program {
 			}
 		}
 		
-
+		//Get the year
 		isValid = false; // Get ready for next validation
 		while(!isValid){
 			
 			System.out.println("Enter the Year to get inventory information(2011)");
 			value = scan.next();
-			
+			uiData.Year = new Integer(0);
 			 if(IsToInteger(value)){
+				 
 				 uiData.Year = Integer.parseInt(value);
 				 if(uiData.Year > 0 && value.length()==4){
 					 isValid = true;
@@ -102,6 +104,7 @@ public class Program {
 			 }
 		}
 		
+		//Get the month
 		isValid = false; // Get ready for next validation
 		while(!isValid){
 			System.out.println("Enter the month to get inventory information");
@@ -114,6 +117,7 @@ public class Program {
 				 }
 			 }
 		}
+		
 		return uiData;
 	}
 	
@@ -132,10 +136,13 @@ public class Program {
 		
 	}
 	
+	/*
+	 * Function check whether string could be parsed to an integer or not
+	 */
 	private boolean IsToInteger(String value){
 		boolean isParsed = false;
 		
-		try {			
+		try {		
 			Integer.parseInt(value);
 			isParsed = true;
 		}
@@ -144,4 +151,6 @@ public class Program {
 		}
 		return isParsed;
 	}
+	
+	
 }
