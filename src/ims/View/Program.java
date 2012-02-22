@@ -51,7 +51,7 @@ public class Program {
 		}
 		else if (option == 2){
 			event = Event.ESTIMATE_QUANTITY;
-			
+			UIData = GetEstimationData();
 		}
 		return event;		
 	}
@@ -70,13 +70,17 @@ public class Program {
 		
 		return uiData;
 	}
-
+	
 	private UIEstimation GetEstimationData(){
 		UIEstimation uiData = new UIEstimation();
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the number of pizzas made");
-		
+		uiData.pizzaNumber = scan.nextDouble();
+		System.out.println("Choose the type of pizza to be estimated");
+		uiData.pizzaName = scan.next();
+		System.out.println("Choose the size of the pizza to be estimated");
+		uiData.pizzaSize = scan.next();
 		
 		return uiData;
 		

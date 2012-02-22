@@ -8,5 +8,7 @@ package ims.Model;
  *
  */
 public class UIEstimation extends EntityBase {
-
+	public double pizzaNumber;
+	public String pizzaName;
+	public String pizzaSize;
 }
