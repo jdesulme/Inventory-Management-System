@@ -131,7 +131,7 @@ public class Program {
 		uiData.pizzaName = scan.next();
 		System.out.println("Choose the size of the pizza to be estimated");
 		uiData.pizzaSize = scan.next();
-		
+		//testing
 		return uiData;
 		
 	}
