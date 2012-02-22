@@ -3,6 +3,9 @@
  */
 package ims.Controller;
 
+import java.util.ArrayList;
+
+import ims.DataLayer.DataAccess;
 import ims.Model.*;
 
 /**
@@ -42,6 +45,9 @@ public class  EventHandler {
 		return isSuccess;
 	}
 	
+	
+	
+	
 	public void DisplayResult(){
 		
 		if(UIEvent.equals(Event.EVALUATE_INVENTORY)){
@@ -49,7 +55,10 @@ public class  EventHandler {
 		}
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 			DisplayEstimationResult();
-		}		
+		}
+		else if (UIEvent.equals(Event.DISPLAY_PIZZAS)) {
+			DisplayPizzas();
+		}
 	}
 
 	private void DisplayInformationResult() {
@@ -76,13 +85,13 @@ public class  EventHandler {
 	}
 	
 	private void DisplayPizzas() {
-		//for (Pizza pizza:)
+		DataAccess dataAccess = new DataAccess();
+		ArrayList<Pizza> pizzaList = dataAccess.GetPizzaList();
+		
+		for (Pizza item: pizzaList) {
+			System.out.println(item.getPizzaName());
+		}
 		
 	}
-	
-	private void DisplayPizzaSizes() {
-		
-	}
-	
 	
 }

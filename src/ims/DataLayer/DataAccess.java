@@ -17,8 +17,9 @@ public class DataAccess {
 		
 	}
 	
-	/*
+	/**
 	 * Gets the order list based upon the locality and date 
+	 * 
 	 */
 	public ArrayList<Order> GetOrderList(Location locality){
 		

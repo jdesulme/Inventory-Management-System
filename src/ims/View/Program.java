@@ -56,6 +56,11 @@ public class Program {
 		return event;		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	
 	private UIInformation GetInformationData(){
 		
 		UIInformation uiData = new UIInformation();
@@ -74,7 +79,7 @@ public class Program {
 			
 			value = scan.next();
 			
-			for(Location locValue :Location.values() ){
+			for(Location locValue : Location.values() ){
 				
 				if(locValue.toString().equalsIgnoreCase(value)){
 					isValid = true;
@@ -118,17 +123,22 @@ public class Program {
 		return uiData;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private UIEstimation GetEstimationData(){
 		
 		UIEstimation uiData = new UIEstimation();
 		
 		boolean isValid = false;
-		
+		String input;
 		Scanner scan = new Scanner(System.in);
 		
+		//user enters number of pizza's with validation
 		do {
 			System.out.println("Enter the number of pizzas made");
-			String input = scan.next();
+			 input = scan.next();
 			
 			if ( Estimation.validateInput(input) ) {
 				uiData.pizzaNumber = Integer.parseInt(input);
@@ -140,14 +150,32 @@ public class Program {
 		//retrieve a list of all existing pizza's
 		isValid = false;
 		
-		//do {
+		do {
 			System.out.println("Choose the type of pizza to be estimated");
+			//validation to check if that input exists
 			uiData.pizzaName = scan.next();
+			isValid = true;
 			
-		//} while (!isValid);
+		} while (!isValid);
 		
-		System.out.println("Choose the size of the pizza to be estimated (small, medium, large)");
-		uiData.pizzaSize = scan.next();
+		
+		//user enters the size of the pizza to be estimated
+		isValid = false;
+		do {
+			System.out.println("Choose the size of the pizza to be estimated (small, medium, or large)");
+			
+			input = scan.next();
+			
+			for(Sizes size : Sizes.values()){
+				if(size.toString().equalsIgnoreCase(input)){
+					uiData.pizzaSize = input;
+					isValid = true;
+					break;
+				}
+			}
+			
+		} while(!isValid);
+		
 		
 		System.out.println(uiData.toString());
 		
@@ -156,7 +184,7 @@ public class Program {
 		return uiData;
 	}
 	
-	/*
+	/**
 	 * Function check whether string could be parsed to an integer or not
 	 */
 	private boolean IsToInteger(String value){
