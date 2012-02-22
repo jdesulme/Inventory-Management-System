@@ -33,6 +33,8 @@ public class  EventHandler {
 		} 		
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 			Estimation estimation = new Estimation();
+			UIEstimation result = (UIEstimation) data;
+			
 			isSuccess = true;
 			System.out.println("Reaching the handle Event method");
 		} 
@@ -73,5 +75,14 @@ public class  EventHandler {
 		
 	}
 	
-
+	private void DisplayPizzas() {
+		//for (Pizza pizza:)
+		
+	}
+	
+	private void DisplayPizzaSizes() {
+		
+	}
+	
+	
 }

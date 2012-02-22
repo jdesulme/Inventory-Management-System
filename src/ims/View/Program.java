@@ -5,8 +5,6 @@ package ims.View;
 
 import java.util.Scanner;
 
-import javax.xml.bind.ParseConversionEvent;
-
 import ims.Model.*;
 import ims.Controller.*;
 
@@ -40,7 +38,7 @@ public class Program {
 		do{
 			System.out.println("Enter the option");
 			System.out.println("1.Evaluate Inventory Level");
-			System.out.println("2.Estimate qunatity of Ingredients");
+			System.out.println("2.Estimate Quantity of Ingredients");
 			Scanner scan = new Scanner(System.in);
 			option = scan.nextInt();
 		} while(option<0 || option>2);
@@ -48,7 +46,6 @@ public class Program {
 		Event event = null;
 		
 		if (option == 1){
-			
 			event = Event.EVALUATE_INVENTORY;
 			UIData = GetInformationData();
 		}
@@ -92,7 +89,7 @@ public class Program {
 		isValid = false; // Get ready for next validation
 		while(!isValid){
 			
-			System.out.println("Enter the Year to get inventory information(2011)");
+			System.out.println("Enter the Year to get inventory information (2011)");
 			value = scan.next();
 			uiData.Year = new Integer(0);
 			 if(IsToInteger(value)){
@@ -122,18 +119,41 @@ public class Program {
 	}
 	
 	private UIEstimation GetEstimationData(){
+		
 		UIEstimation uiData = new UIEstimation();
 		
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter the number of pizzas made");
-		uiData.pizzaNumber = scan.nextDouble();
-		System.out.println("Choose the type of pizza to be estimated");
-		uiData.pizzaName = scan.next();
-		System.out.println("Choose the size of the pizza to be estimated");
-		uiData.pizzaSize = scan.next();
-		//testing
-		return uiData;
+		boolean isValid = false;
 		
+		Scanner scan = new Scanner(System.in);
+		
+		do {
+			System.out.println("Enter the number of pizzas made");
+			String input = scan.next();
+			
+			if ( Estimation.validateInput(input) ) {
+				uiData.pizzaNumber = Integer.parseInt(input);
+				isValid = true;
+			}
+		} while (!isValid);
+		
+		
+		//retrieve a list of all existing pizza's
+		isValid = false;
+		
+		//do {
+			System.out.println("Choose the type of pizza to be estimated");
+			uiData.pizzaName = scan.next();
+			
+		//} while (!isValid);
+		
+		System.out.println("Choose the size of the pizza to be estimated (small, medium, large)");
+		uiData.pizzaSize = scan.next();
+		
+		System.out.println(uiData.toString());
+		
+		
+		
+		return uiData;
 	}
 	
 	/*
