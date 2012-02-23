@@ -24,7 +24,7 @@ public class Program {
 		Event event = program.GetEvent();
 		EventHandler eventHandler = new EventHandler(event);
 		if(eventHandler.HandleEvent(program.UIData)){
-			eventHandler.DisplayResult();
+			program.DisplayInformationResult((UIInformation) program.UIData);
 		}
 		else {
 			System.out.println("Error Occured");
@@ -199,5 +199,29 @@ public class Program {
 		return isParsed;
 	}
 	
+	/*
+	 * Displays the processed information result
+	 */
+	private void DisplayInformationResult(UIInformation result) {
+			
+		if(result!=null){
+			System.out.println("====================Information Report====================");
+			System.out.print("Report :" + result.Locality.toString());
+			System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
+			System.out.println("==========================================================");
+			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
+			System.out.println("==========================================================");
+			
+			for (Ingredient ingredient : result.IngredientList) {
+				
+				//System.out.println(ingredient.getName() + "    "+ ingredient.getQuantity() + "    " + ingredient.getUnitType() + "    "+ ingredient.getCost()); 
+				
+				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+																   ingredient.getQuantity(),
+														           ingredient.getUnitType(),
+														           ingredient.getCost()); 
+			}		
+		}
+	}
 	
 }

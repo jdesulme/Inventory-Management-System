@@ -30,9 +30,10 @@ public class  EventHandler {
 			
 			Information information = new Information();
 			UIInformation result = (UIInformation) data;
+			result.IngredientList = new ArrayList<Ingredient>();
 			isSuccess = information.ProcessInformation(result);
-			result.IngredientList = information.InformationReport;
-			Result = result;			
+			//result.IngredientList = UIInformation;
+			//Result = result;			
 		} 		
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 			Estimation estimation = new Estimation();
@@ -50,10 +51,7 @@ public class  EventHandler {
 	
 	public void DisplayResult(){
 		
-		if(UIEvent.equals(Event.EVALUATE_INVENTORY)){
-			DisplayInformationResult();
-		}
-		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
+	 if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 			DisplayEstimationResult();
 		}
 		else if (UIEvent.equals(Event.DISPLAY_PIZZAS)) {
@@ -61,24 +59,6 @@ public class  EventHandler {
 		}
 	}
 
-	private void DisplayInformationResult() {
-		
-		UIInformation result = (UIInformation)Result;
-		
-		System.out.println("====================Information Report====================");
-		System.out.print("Report :" + result.Locality.toString());
-		System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
-		System.out.println("==========================================================");
-		System.out.println("Ingredient Name        Quantity Unit    TotalCost");
-		System.out.println("==========================================================");
-		
-		for (Ingredient ingredient : result.IngredientList) {
-			System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
-													  ingredient.getQuantity(),
-													  ingredient.getUnitType(),
-													  ingredient.getCost()); 
-		}		
-	}
 
 	private void DisplayEstimationResult() {
 		// TODO Auto-generated method stub

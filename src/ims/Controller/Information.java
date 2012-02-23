@@ -13,7 +13,6 @@ import ims.DataLayer.*;
  */
 public class Information {
 
-	ArrayList<Ingredient> InformationReport;
 	
 	public boolean ValidateInput(int year, int month){
 		boolean isValid = false;
@@ -28,10 +27,12 @@ public class Information {
 	 */
 	
 	public boolean ProcessInformation(UIInformation uiInformation){
+		
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
-		InformationReport = new ArrayList<Ingredient>();
+		ArrayList<Ingredient> InformationReport = uiInformation.IngredientList;//using UI information data as reference 
 		ArrayList<Order> orderList = dataAccess.GetOrderList(uiInformation.Locality);
+		double totalCost = 0.0;
 		
 		if(orderList!=null && !orderList.isEmpty()){
 			//Looping the order list
@@ -48,25 +49,26 @@ public class Information {
 						double quantity = Rules.GetQuantity(ingredient.getQuantity(), ingredient.getUnitType());
 						
 						//calculates the total cost
-						double totalCost = quantity * ingredient.getCost();
-						
+						double totalIngredientCost = quantity * ingredient.getCost();
+						totalCost +=totalIngredientCost;
 						//Find and returns the ingredient if already in the list
 						Ingredient tempIngredient = ingredient.GetIngredientFromList(InformationReport);
 						
 						//If no ingredient is found in the list
 						if(tempIngredient == null){
-							tempIngredient  = new Ingredient(ingredient.getName(),quantity, totalCost, "kg");
+							tempIngredient  = new Ingredient(ingredient.getName(),quantity, totalIngredientCost, Rules.GetAcronymOfUnitType(ingredient.getUnitType()));
 							InformationReport.add(tempIngredient);
 						}
 						else{// if ingredient is found in the lists
 							tempIngredient.setQuantity(quantity + tempIngredient.getQuantity());
-							tempIngredient.setCost(totalCost + tempIngredient.getCost());
+							tempIngredient.setCost(totalIngredientCost + tempIngredient.getCost());
 						}
 					}
 				}
 			}
 			
 			if(!InformationReport.isEmpty()){
+				uiInformation.TotalCost  = totalCost;
 				isDone = true;
 			}
 			else{

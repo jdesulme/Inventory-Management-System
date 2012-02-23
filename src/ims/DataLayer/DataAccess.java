@@ -12,11 +12,6 @@ import ims.Model.*;
  */
 public class DataAccess {
 	
-	public DataAccess(){
-		
-		
-	}
-	
 	/**
 	 * Gets the order list based upon the locality and date 
 	 * 
@@ -169,19 +164,19 @@ public class DataAccess {
 		//Create pepperoni pizza size medium
 		Ingredient pepperoniPM = new Ingredient("Pepperoni", 3, 0, "grams");			
 		ArrayList<Ingredient> ingredientsPM = new ArrayList<Ingredient>();
-		ingredientsPL.add(pepperoniPM);
-		ingredientsPL.add(cheeseM);
-		ingredientsPL.add(oilM);
-		ingredientsPL.add(doughM);		
+		ingredientsPM.add(pepperoniPM);
+		ingredientsPM.add(cheeseM);
+		ingredientsPM.add(oilM);
+		ingredientsPM.add(doughM);		
 		Pizza pepperoniMedium = new Pizza ("Pepperoni", "Medium", ingredientsPM);
 		
-		//Create pepperoni pizza size medium
+		//Create pepperoni pizza size small
 		Ingredient pepperoniPS = new Ingredient("Pepperoni", 2, 0, "grams");					
 		ArrayList<Ingredient> ingredientsPS = new ArrayList<Ingredient>();
-		ingredientsPL.add(pepperoniPS);
-		ingredientsPL.add(cheeseS);
-		ingredientsPL.add(oilS);
-		ingredientsPL.add(doughS);
+		ingredientsPS.add(pepperoniPS);
+		ingredientsPS.add(cheeseS);
+		ingredientsPS.add(oilS);
+		ingredientsPS.add(doughS);
 		Pizza pepperoniSmall = new Pizza ("Pepperoni", "Small", ingredientsPS);
 		
 		//Create meat lover pizza size large
@@ -237,18 +232,19 @@ public class DataAccess {
 	public ArrayList<Ingredient> GetIngredients(String pizzaName, String pizzaSize){
 		System.out.printf("Input: %s - %s %n", pizzaName, pizzaSize);
 		
-		ArrayList<Ingredient> ingredientList = null;
 		
 		ArrayList<Pizza> pizzaList = GetPizzaList();
 		
 		for (Pizza pizza : pizzaList) {
+			
 			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize)) {
-				ingredientList = pizza.getIngredients();
-				break;
+				
+				return pizza.getIngredients();
+			
 			}
 			
 		}
 		
-		return ingredientList;
+		return null;
 	}
 }

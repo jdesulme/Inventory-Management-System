@@ -51,4 +51,30 @@ public class Rules {
 		return convertedValue;
 	}
 	
+	/*
+	 * Get Acronym of unitsType based on the project rule
+	 */
+	public static String  GetAcronymOfUnitType(String abbreviation){
+		
+		String acronym;
+		
+		if(abbreviation.equalsIgnoreCase("milliliters")){
+			acronym = "liters";
+		}
+		else if(abbreviation.equalsIgnoreCase("liters")){
+			acronym = "liters";
+		}
+		else if(abbreviation.equalsIgnoreCase("kilograms")){
+			acronym = "kg";
+		}
+		else if(abbreviation.equalsIgnoreCase("grams")){
+			acronym = "kg";
+		}
+		else{
+			acronym = abbreviation;
+		}
+		
+		return acronym;
+	}
+	
 }

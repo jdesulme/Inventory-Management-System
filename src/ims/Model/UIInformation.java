@@ -14,4 +14,5 @@ public class UIInformation extends EntityBase {
 	public Integer Month;
 	public Integer Year;
 	public ArrayList<Ingredient> IngredientList;
+	public double TotalCost;
 }
