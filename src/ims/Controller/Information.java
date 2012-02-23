@@ -33,14 +33,14 @@ public class Information {
 		InformationReport = new ArrayList<Ingredient>();
 		ArrayList<Order> orderList = dataAccess.GetOrderList(uiInformation.Locality);
 		
-		if(orderList!=null && orderList.isEmpty()){
+		if(orderList!=null && !orderList.isEmpty()){
 			//Looping the order list
 			for (Order order : orderList) {
 				
 				ArrayList<Ingredient> ingredientList = order.getIngredients();
 				
 				//Looping through the ingredient list
-				if(ingredientList!=null && ingredientList.isEmpty()){
+				if(ingredientList!=null && !ingredientList.isEmpty()){
 					
 					for (Ingredient ingredient : ingredientList) {
 						

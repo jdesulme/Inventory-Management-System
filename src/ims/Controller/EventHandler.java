@@ -65,17 +65,21 @@ public class  EventHandler {
 		
 		UIInformation result = (UIInformation)Result;
 		
-		System.out.println("====================Information Report===================");
+		System.out.println("====================Information Report====================");
 		System.out.print("Report :" + result.Locality.toString());
 		System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
 		System.out.println("==========================================================");
-		System.out.println("Ingredient Name    Quantity    Unit    TotalCost");
+		System.out.println("Ingredient Name        Quantity Unit    TotalCost");
 		System.out.println("==========================================================");
 		
 		for (Ingredient ingredient : result.IngredientList) {
 			
-			System.out.println(ingredient.getName() + "    "+ ingredient.getQuantity() + "    " + ingredient.getUnitType() + "    "+ ingredient.getCost()); 
+			//System.out.println(ingredient.getName() + "    "+ ingredient.getQuantity() + "    " + ingredient.getUnitType() + "    "+ ingredient.getCost()); 
 			
+			System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+													  ingredient.getQuantity(),
+													  ingredient.getUnitType(),
+													  ingredient.getCost()); 
 		}		
 	}
 
