@@ -19,10 +19,11 @@ public class Order {
 	/*
 	 * Constructor
 	 */
-	public Order (int inID, String inDate, double inCost, ArrayList <Ingredient> inIngredients)
+	public Order (int inID, String inDate, Branch inBranch, double inCost, ArrayList <Ingredient> inIngredients)
 	{
 		this.orderID = inID;
 		this.orderDate = inDate;
+		this.branch = inBranch;
 		this.orderCost = inCost;
 		this.ingredients = inIngredients;
 	}
