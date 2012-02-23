@@ -19,16 +19,17 @@ public class Estimation {
 	public boolean ProcessInformation(UIEstimation ui){
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
-		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName.toString(), ui.pizzaSize);
-	
-		for(Ingredient item : estimationList) {
-			
-			//pass in a string with the user preferences 
-			System.out.printf("Quantity: %d	/t Type: %s /t Total Quantity Used: %d",item.getQuantity(), item.getUnitType(), item.calcQuantityCost(ui.pizzaNumber) );
-			
+		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName, ui.pizzaSize);
+		
+		if( estimationList !=null && !estimationList.isEmpty() ) {
+			for(Ingredient item : estimationList) {
+				System.out.printf("Name: %s		Quantity: %2.2f		Type: %s	Total Quantity Used: %2.2f%n ",item.getName(), item.getQuantity(), item.getUnitType(),item.calcQuantityCost(ui.pizzaNumber) );
+				
+			}
+			isDone = true;
+		} else {
+			System.out.println("No records available");
 		}
-		
-		
 		
 		
 		return isDone;

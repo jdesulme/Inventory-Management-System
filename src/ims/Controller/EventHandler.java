@@ -14,7 +14,7 @@ import ims.Model.*;
  */
 public class  EventHandler {
 	
-	private static final String UIInformation = null;
+	//private static final String UIInformation = null;
 	public  EntityBase Result;
 	private Event UIEvent;
 	
@@ -73,9 +73,6 @@ public class  EventHandler {
 		System.out.println("==========================================================");
 		
 		for (Ingredient ingredient : result.IngredientList) {
-			
-			//System.out.println(ingredient.getName() + "    "+ ingredient.getQuantity() + "    " + ingredient.getUnitType() + "    "+ ingredient.getCost()); 
-			
 			System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
 													  ingredient.getQuantity(),
 													  ingredient.getUnitType(),

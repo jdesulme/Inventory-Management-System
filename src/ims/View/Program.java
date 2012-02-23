@@ -180,10 +180,6 @@ public class Program {
 		} while(!isValid);
 		
 		
-		System.out.println(uiData.toString());
-		
-		
-		
 		return uiData;
 	}
 	

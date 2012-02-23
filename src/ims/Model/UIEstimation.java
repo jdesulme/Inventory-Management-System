@@ -11,9 +11,10 @@ public class UIEstimation extends EntityBase {
 	public int pizzaNumber;
 	public String pizzaName;
 	public String pizzaSize;
+	public String ingredients;
 	
 	public String toString() {
-		return String.format("Pizza Number: %d, Pizza Name: %s, Pizza Size: %s", pizzaNumber, pizzaName, pizzaSize);
+		return String.format("Pizza Number: %d, Pizza Name: %s, Pizza Size: %s %nIngredients To Be Estimated: %s", pizzaNumber, pizzaName, pizzaSize, ingredients);
 	}
 	
 	

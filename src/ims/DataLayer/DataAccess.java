@@ -235,15 +235,14 @@ public class DataAccess {
 	 * @return
 	 */
 	public ArrayList<Ingredient> GetIngredients(String pizzaName, String pizzaSize){
-		//look in the pizza array list for something that matches 
-		//than list out all the ingredients
+		System.out.printf("Input: %s - %s %n", pizzaName, pizzaSize);
+		
 		ArrayList<Ingredient> ingredientList = null;
 		
-		DataAccess dataAccess = new DataAccess();
-		ArrayList<Pizza> pizzaList = dataAccess.GetPizzaList();
+		ArrayList<Pizza> pizzaList = GetPizzaList();
 		
 		for (Pizza pizza : pizzaList) {
-			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName.toString()) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize.toString())) {
+			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize)) {
 				ingredientList = pizza.getIngredients();
 				break;
 			}
