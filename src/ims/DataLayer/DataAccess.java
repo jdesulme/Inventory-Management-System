@@ -142,12 +142,91 @@ public class DataAccess {
 	 * @return  
 	 */
 	public ArrayList<Pizza> GetPizzaList() {
+		
+		//Create pizzaList
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
-		//this should contain all the pizzas that are stored
-
+		
+		//Create base ingredients dough, oil, and cheese for differensize of pizza
+		Ingredient cheeseL = new Ingredient("Cheese", 12, 0, "grams");
+		Ingredient oilL = new Ingredient ("Oil", 15, 0, "milliliter");
+		Ingredient doughL = new Ingredient ("Dough", 300, 0, "grams");
+		Ingredient cheeseM = new Ingredient("Cheese", 12, 0, "grams");
+		Ingredient oilM = new Ingredient ("Oil", 10, 0, "milliliter");
+		Ingredient doughM = new Ingredient ("Dough", 250, 0, "grams");
+		Ingredient cheeseS = new Ingredient("Cheese", 10, 0, "grams");
+		Ingredient oilS = new Ingredient ("Oil", 10, 0, "milliliter");
+		Ingredient doughS = new Ingredient ("Dough", 200, 0, "grams");
+		
+		//Create pepperoni pizza size large
+		Ingredient pepperoniPL = new Ingredient("Pepperoni", 2, 0, "grams");
+		ArrayList<Ingredient> ingredientsPL = new ArrayList<Ingredient>();
+		ingredientsPL.add(pepperoniPL);
+		ingredientsPL.add(cheeseL);
+		ingredientsPL.add(oilL);
+		ingredientsPL.add(doughL);
+		Pizza pepperoniLarge = new Pizza ("Pepperoni", "Large", ingredientsPL);
+		
+		//Create pepperoni pizza size medium
+		Ingredient pepperoniPM = new Ingredient("Pepperoni", 3, 0, "grams");			
+		ArrayList<Ingredient> ingredientsPM = new ArrayList<Ingredient>();
+		ingredientsPL.add(pepperoniPM);
+		ingredientsPL.add(cheeseM);
+		ingredientsPL.add(oilM);
+		ingredientsPL.add(doughM);		
+		Pizza pepperoniMedium = new Pizza ("Pepperoni", "Medium", ingredientsPM);
+		
+		//Create pepperoni pizza size medium
+		Ingredient pepperoniPS = new Ingredient("Pepperoni", 2, 0, "grams");					
+		ArrayList<Ingredient> ingredientsPS = new ArrayList<Ingredient>();
+		ingredientsPL.add(pepperoniPS);
+		ingredientsPL.add(cheeseS);
+		ingredientsPL.add(oilS);
+		ingredientsPL.add(doughS);
+		Pizza pepperoniSmall = new Pizza ("Pepperoni", "Small", ingredientsPS);
+		
+		//Create meat lover pizza size large
+		Ingredient italianSausageMLL = new Ingredient("Italian Sausage", 9, 0, "grams");
+		Ingredient baconMLL = new Ingredient("Bacon", 9, 0, "grams");
+		ArrayList<Ingredient> ingredientsMLL = new ArrayList<Ingredient>();
+		ingredientsMLL.add(doughL);
+		ingredientsMLL.add(cheeseL);
+		ingredientsMLL.add(oilL);
+		ingredientsMLL.add(italianSausageMLL);
+		ingredientsMLL.add(baconMLL);
+		Pizza meatLoverLarge = new Pizza ("Meat Lover", "Large", ingredientsMLL);
+		
+		//Create meat lover pizza size medium
+		Ingredient italianSausageMLM = new Ingredient("Italian Sausage", 7, 0, "grams");
+		Ingredient baconMLM = new Ingredient("Bacon", 7, 0, "grams");
+		ArrayList<Ingredient> ingredientsMLM = new ArrayList<Ingredient>();
+		ingredientsMLM.add(doughM);
+		ingredientsMLM.add(cheeseM);
+		ingredientsMLM.add(oilM);
+		ingredientsMLM.add(italianSausageMLM);
+		ingredientsMLM.add(baconMLM);
+		Pizza meatLoverMedium = new Pizza ("Meat Lover", "Large", ingredientsMLM);
+		
+		//Create meat lover pizza size medium
+		Ingredient italianSausageMLS = new Ingredient("Italian Sausage", 5, 0, "grams");
+		Ingredient baconMLS = new Ingredient("Bacon", 5, 0, "grams");
+		ArrayList<Ingredient> ingredientsMLS = new ArrayList<Ingredient>();
+		ingredientsMLS.add(doughS);
+		ingredientsMLS.add(cheeseS);
+		ingredientsMLS.add(oilS);
+		ingredientsMLS.add(italianSausageMLS);
+		ingredientsMLS.add(baconMLS);
+		Pizza meatLoverSmall = new Pizza ("Meat Lover", "Large", ingredientsMLS);
+		
+		pizzaList.add(pepperoniLarge);
+		pizzaList.add(pepperoniMedium);
+		pizzaList.add(pepperoniSmall);
+		pizzaList.add(meatLoverLarge);
+		pizzaList.add(meatLoverMedium);
+		pizzaList.add(meatLoverSmall);
 		
 		return pizzaList;
 	}
+	
 	
 	/**
 	 * 
