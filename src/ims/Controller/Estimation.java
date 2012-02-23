@@ -3,13 +3,32 @@
  */
 package ims.Controller;
 
+import java.util.ArrayList;
+
+import ims.DataLayer.DataAccess;
+import ims.Model.*;
+
+
 /**
  * @author Minh, Kumar, Jean
  *
  */
 public class Estimation {
-
-	
+	ArrayList<Ingredient> EstimationReport;
+		
+	public boolean ProcessInformation(UIEstimation ui){
+		boolean isDone = false;
+		DataAccess dataAccess  = new DataAccess();
+		//ui.pizzaName;
+		//ui.pizzaNumber;
+		//ui.pizzaSize
+		
+		
+		
+		
+		
+		return isDone;
+	}
 	
 	
 	

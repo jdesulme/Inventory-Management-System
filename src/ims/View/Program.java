@@ -26,7 +26,7 @@ public class Program {
 		if(eventHandler.HandleEvent(program.UIData)){
 			eventHandler.DisplayResult();
 		}
-		else{
+		else {
 			System.out.println("Error Occured");
 		}
 		
@@ -147,9 +147,12 @@ public class Program {
 		} while (!isValid);
 		
 		
-		//retrieve a list of all existing pizza's
-		isValid = false;
+		//retrieve and display list of all existing pizza's'
+		Event pizzaEvent = Event.DISPLAY_PIZZAS;
+		EventHandler event = new EventHandler(pizzaEvent);
+		event.DisplayResult();
 		
+		isValid = false;
 		do {
 			System.out.println("Choose the type of pizza to be estimated");
 			//validation to check if that input exists

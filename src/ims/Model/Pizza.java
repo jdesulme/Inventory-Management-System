@@ -10,13 +10,19 @@ public class Pizza {
 	
 	//Declare attributes
 	private String pizzaName;
-	private char pizzaType;
+	private String pizzaType;
 	private ArrayList <Ingredient> ingredients;
+	
+	public Pizza() {
+		setPizzaName("Pepperoni");
+		setPizzaType("large");
+	}
+	
 	
 	/*
 	 * Constructor
 	 */
-	public Pizza (String inName, char inType, ArrayList <Ingredient> inIngredients)
+	public Pizza (String inName, String inType, ArrayList <Ingredient> inIngredients)
 	{
 		this.pizzaName = inName;
 		this.pizzaType = inType;
@@ -40,15 +46,15 @@ public class Pizza {
 	/*
 	 * Accessor for pizzaType
 	 */
-	public char getPizzaType() {
+	public String getPizzaType() {
 		return pizzaType;
 	}
 
 	/*
 	 * Mutator for pizzaType
 	 */
-	public void setPizzaType(char pizzaType) {
-		this.pizzaType = pizzaType;
+	public void setPizzaType(String string) {
+		this.pizzaType = string;
 	}
 
 	/*

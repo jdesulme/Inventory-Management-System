@@ -36,8 +36,25 @@ public class DataAccess {
 	public ArrayList<Pizza> GetPizzaList() {
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
 		//this should contain all the pizzas that are stored
-		
+
 		
 		return pizzaList;
+	}
+	
+	/**
+	 * 
+	 * @param pizzaName
+	 * @param pizzaSize
+	 * @return
+	 */
+	public ArrayList<Ingredient> GetIngredients(UIEstimation pizzaName, UIEstimation pizzaSize){
+		//look in the pizza array list for something that matches 
+		//than list out all the ingredients
+		
+		
+		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+		
+		
+		return ingredientList;
 	}
 }
