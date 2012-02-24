@@ -166,9 +166,15 @@ public class Program {
 		scan.skip("\n");
 		do {
 			System.out.println("Choose the type of pizza to be estimated");
-			//validation to check if that input exists
-			uiData.pizzaName = scan.nextLine();
-			isValid = true;
+			String inputNum = scan.nextLine();
+			
+			for (Pizza item: uiData.pizzaList) {
+				if(item.getPizzaName().equalsIgnoreCase(inputNum)){
+					uiData.pizzaName = inputNum;
+					isValid = true;
+					break;
+				}
+			}
 			
 		} while (!isValid);
 		
