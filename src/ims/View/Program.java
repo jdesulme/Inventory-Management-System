@@ -272,6 +272,7 @@ public class Program {
 			Scanner scan = new Scanner(System.in);
 			
 			System.out.printf("Instructions: Enter ingredient name and a space to remove ingredients you do not want to estimate  %n");
+			System.out.printf("Press 'enter' to continue without removing anything.  %n");
 			
 			for (Ingredient ingredient : result.IngredientList) {
 				System.out.printf( "%-19s %n", ingredient.getName() ); 
