@@ -288,7 +288,7 @@ public class Program {
 				
 					if(result.IngredientList.get(i).getName().equalsIgnoreCase(value)){
 						result.IngredientList.remove(i);
-	
+						break;
 					}
 					
 				}
