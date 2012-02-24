@@ -282,7 +282,7 @@ public class Program {
 			
 			String ingredientRemoval[] = inputRemove.split(" ");
 			
-			for( int i=0; i < result.IngredientList.size(); i++  ){
+			for( int i=result.IngredientList.size() - 1; i >= 0 ; --i  ){
 				
 				for(String value:ingredientRemoval ) {
 				
