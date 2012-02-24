@@ -14,7 +14,13 @@ import ims.DataLayer.*;
  */
 public class Information {
 
-	
+	/**
+	 *  Validates and checks if an order exists for the given month and year. 
+	 *  if it exists it's added to a list and returns it
+	 *  @param year
+	 *  @param month
+	 *  @param orderList
+	 */
 	public ArrayList<Order> GetValidOrders(int year, int month,ArrayList<Order> orderList){
 		 
 		 if(orderList!=null && !orderList.isEmpty()){
