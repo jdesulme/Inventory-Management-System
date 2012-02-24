@@ -43,7 +43,9 @@ public class Program {
 	}
 	
 	/**
-	 * 
+	 * Asks the users whether they want the system to perform 
+	 * “Evaluate inventory levels”  or “Estimate quantity of ingredients” 
+	 * and call out appropriate event
 	 * @return
 	 */
 	public Event GetEvent(){
@@ -82,8 +84,8 @@ public class Program {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Accepts users’ inputs needed to perform “Evaluate inventory levels” function
+	 * @return the user's data
 	 */
 	
 	private UIInformation GetInformationData(){
@@ -150,8 +152,8 @@ public class Program {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Accepts users’ inputs needed to perform “Estimate quantity of ingredients” 
+	 * @return the user's data
 	 */
 	private UIEstimation GetEstimationData(){
 		
@@ -245,7 +247,8 @@ public class Program {
 	}
 	
 	/**
-	 * 
+	 * Validation method that calls either DisplayInformationResult or DisplayEstimationResult 
+	 * to display output.
 	 * @param uiData
 	 */
 	public void DisplayResult(EntityBase uiData){
@@ -260,7 +263,7 @@ public class Program {
 	}
 	
 	/**
-	 * 
+	 * Formats and displays the processed information result for the “Evaluate inventory levels”
 	 * @param result
 	 */
 	private void DisplayEstimationResult(UIEstimation result) {
@@ -305,7 +308,7 @@ public class Program {
 	}
 		
 	/**
-	 * Displays the processed information result
+	 * Formats & Displays the processed information result
 	 * @param result
 	 */
 	private void DisplayInformationResult(UIInformation result) {
