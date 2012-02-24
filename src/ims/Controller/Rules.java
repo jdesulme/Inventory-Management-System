@@ -41,7 +41,7 @@ public class Rules {
 		if(unitType.equalsIgnoreCase("grams")){//If unit type is grams convert to kilograms
 			convertedValue =  convertToKg(value);
 		}
-		else if(unitType.equalsIgnoreCase("millilters")){//If unit type is mili liter convert to liters
+		else if(unitType.equalsIgnoreCase("milliliters")){//If unit type is mili liter convert to liters
 			convertedValue =  convertToLiter(value);			
 		}
 		else{//Do nothing 
