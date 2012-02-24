@@ -26,7 +26,7 @@ public class Rules {
 	 * @return the conversion
 	 */
 	private  static double convertToLiter(double mL) {
-		return mL * (1/1000);
+		return mL/1000;
 	}
 	
 	/**
