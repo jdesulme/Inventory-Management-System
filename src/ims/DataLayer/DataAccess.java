@@ -234,13 +234,21 @@ public class DataAccess {
 	 * @param pizzaSize
 	 * @return
 	 */
-	public ArrayList<Ingredient> GetIngredients(UIEstimation pizzaName, UIEstimation pizzaSize){
+	public ArrayList<Ingredient> GetIngredients(String pizzaName, String pizzaSize){
 		//look in the pizza array list for something that matches 
 		//than list out all the ingredients
+		ArrayList<Ingredient> ingredientList = null;
 		
+		DataAccess dataAccess = new DataAccess();
+		ArrayList<Pizza> pizzaList = dataAccess.GetPizzaList();
 		
-		ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-		
+		for (Pizza pizza : pizzaList) {
+			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName.toString()) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize.toString())) {
+				ingredientList = pizza.getIngredients();
+				break;
+			}
+			
+		}
 		
 		return ingredientList;
 	}

@@ -5,7 +5,7 @@ package ims.Controller;
 
 import java.util.ArrayList;
 
-import ims.DataLayer.DataAccess;
+import ims.DataLayer.*;
 import ims.Model.*;
 
 
@@ -19,10 +19,14 @@ public class Estimation {
 	public boolean ProcessInformation(UIEstimation ui){
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
-		//ui.pizzaName;
-		//ui.pizzaNumber;
-		//ui.pizzaSize
-		
+		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName.toString(), ui.pizzaSize);
+	
+		for(Ingredient item : estimationList) {
+			
+			//pass in a string with the user preferences 
+			System.out.printf("Quantity: %d	/t Type: %s /t Total Quantity Used: %d",item.getQuantity(), item.getUnitType(), item.calcQuantityCost(ui.pizzaNumber) );
+			
+		}
 		
 		
 		
@@ -30,8 +34,7 @@ public class Estimation {
 		return isDone;
 	}
 	
-	
-	
+
 	/**
 	 * Checks to see if the user entered a number
 	 * @param numPizza the number of pizza made

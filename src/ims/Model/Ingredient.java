@@ -85,6 +85,15 @@ public class Ingredient {
 		this.unitType = unitType;
 	}
 	
+	public double calcQuantityCost(int numPizza) {
+		double total;
+		
+		total = numPizza * getQuantity();
+		
+		return total; 
+	}
+	
+	
 	/**
 	 * To find the ingredient in the list of ingredients
 	 * @param ingredientList
