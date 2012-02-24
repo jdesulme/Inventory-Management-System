@@ -13,12 +13,6 @@ public class Pizza {
 	private String pizzaSize;
 	private ArrayList <Ingredient> ingredients;
 	
-	public Pizza() {
-		setPizzaName("Pepperoni");
-		setPizzaSize("Large");
-	}
-	
-	
 	/*
 	 * Constructor
 	 */

@@ -224,14 +224,12 @@ public class DataAccess {
 	
 	
 	/**
-	 * 
+	 * Returns the ingredients for a specified pizza name and pizza size
 	 * @param pizzaName
 	 * @param pizzaSize
 	 * @return
 	 */
 	public ArrayList<Ingredient> GetIngredients(String pizzaName, String pizzaSize){
-		System.out.printf("Input: %s - %s %n", pizzaName, pizzaSize);
-		
 		
 		ArrayList<Pizza> pizzaList = GetPizzaList();
 		

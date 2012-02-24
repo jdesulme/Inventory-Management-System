@@ -36,10 +36,10 @@ public class  EventHandler {
 			//Result = result;			
 		} 		
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
+		
 			Estimation estimation = new Estimation();
 			UIEstimation result = (UIEstimation) data;
 			isSuccess = estimation.ProcessInformation(result);
-			
 			
 		} 
 		

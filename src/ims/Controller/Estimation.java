@@ -19,18 +19,21 @@ public class Estimation {
 	public boolean ProcessInformation(UIEstimation ui){
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
+		ArrayList<Ingredient> EstimationReport = ui.IngredientList;
 		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName, ui.pizzaSize);
 		
 		if( estimationList !=null && !estimationList.isEmpty() ) {
 			for(Ingredient item : estimationList) {
-				System.out.printf("Name: %s		Quantity: %2.2f		Type: %s	Total Quantity Used: %2.2f%n ",item.getName(), item.getQuantity(), item.getUnitType(),item.calcQuantityCost(ui.pizzaNumber) );
+				double quantity = Rules.GetQuantity(item.getQuantity(), item.getUnitType());
+				String unitType = Rules.GetAcronymOfUnitType(item.getUnitType());
 				
+				Ingredient tempIngredient = new Ingredient(item.getName(), quantity, item.calcQuantityCost(ui.pizzaNumber), unitType);
+				EstimationReport.add(tempIngredient);
 			}
 			isDone = true;
 		} else {
 			System.out.println("No records available");
 		}
-		
 		
 		return isDone;
 	}

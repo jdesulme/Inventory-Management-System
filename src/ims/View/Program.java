@@ -156,7 +156,7 @@ public class Program {
 		do {
 			System.out.println("Choose the type of pizza to be estimated");
 			//validation to check if that input exists
-			uiData.pizzaName = scan.next();
+			uiData.pizzaName = scan.nextLine();
 			isValid = true;
 			
 		} while (!isValid);
@@ -184,7 +184,7 @@ public class Program {
 	}
 	
 	/**
-	 * Function check whether string could be parsed to an integer or not
+	 * Function that checks whether string could be parsed to an integer or not
 	 */
 	private boolean IsToInteger(String value){
 		boolean isParsed = false;

@@ -85,12 +85,13 @@ public class Ingredient {
 		this.unitType = unitType;
 	}
 	
+	/**
+	 * Calculates the cost of pizza's given a number
+	 * @param numPizza
+	 * @return
+	 */
 	public double calcQuantityCost(int numPizza) {
-		double total;
-		
-		total = numPizza * getQuantity();
-		
-		return total; 
+	 	return numPizza * getQuantity(); 
 	}
 	
 	
