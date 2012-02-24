@@ -324,7 +324,10 @@ public class Program {
 																   ingredient.getQuantity(),
 														           ingredient.getUnitType(),
 														           ingredient.getCost()); 
-			}		
+			}
+			System.out.println("==========================================================");
+			System.out.println("Total Cost: $"+ result.TotalCost);
+			System.out.println("==========================================================");			
 		}
 	}
 	
