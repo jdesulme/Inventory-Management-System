@@ -15,7 +15,12 @@ import ims.Model.*;
  */
 public class Estimation {
 	ArrayList<Ingredient> EstimationReport;
-		
+	
+	/**
+	 * 
+	 * @param ui
+	 * @return
+	 */
 	public boolean ProcessInformation(UIEstimation ui){
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();

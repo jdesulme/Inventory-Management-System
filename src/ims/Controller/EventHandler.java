@@ -23,6 +23,11 @@ public class  EventHandler {
 		this.UIEvent = uiEvent;
 	}
 	
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public boolean  HandleEvent(EntityBase data){
 		//Handle Events here
 		boolean isSuccess = false;
@@ -52,6 +57,11 @@ public class  EventHandler {
 		return isSuccess;
 	}
 	
+	/**
+	 * 
+	 * @param estimation
+	 * @return
+	 */
 	private ArrayList<Pizza> GetPizzaList(UIEstimation estimation) {
 		DataAccess dataAccess = new DataAccess();
 		return dataAccess.GetPizzaList();

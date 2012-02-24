@@ -38,6 +38,10 @@ public class Program {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Event GetEvent(){
 		int option = 0;
 		
@@ -202,6 +206,8 @@ public class Program {
 	
 	/**
 	 * Function that checks whether string could be parsed to an integer or not
+	 * @param value
+	 * @return
 	 */
 	private boolean IsToInteger(String value){
 		boolean isParsed = false;
@@ -216,6 +222,10 @@ public class Program {
 		return isParsed;
 	}
 	
+	/**
+	 * 
+	 * @param uiData
+	 */
 	public void DisplayResult(EntityBase uiData){
 		
 		if(event.equals(Event.EVALUATE_INVENTORY)){		
@@ -226,10 +236,28 @@ public class Program {
 			DisplayEstimationResult((UIEstimation)uiData);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param result
+	 */
 	private void DisplayEstimationResult(UIEstimation result) {
-		
 		if( result != null ){
+			
+			/*
+			Scanner scan = new Scanner(System.in);
+			
+			System.out.printf("Please select the ingredients that you do not want to estimate by entering the item number");
+			int inputRemove = scan.nextInt();
+			
+			int counter = 0; //keeps track of the position
+			for (Ingredient ingredient : result.IngredientList) {
+				System.out.printf("%d %-19s %n", counter, ingredient.getName() ); 
+				counter++;
+			}	
+			*/
+			
+		
 			System.out.println("====================Estimation Report====================");
 			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
 			System.out.println("==========================================================");
@@ -247,11 +275,12 @@ public class Program {
 		}
 	}
 		
-	/*
+	/**
 	 * Displays the processed information result
+	 * @param result
 	 */
 	private void DisplayInformationResult(UIInformation result) {
-			
+		
 		if(result!=null){
 			System.out.println("====================Information Report====================");
 			System.out.print("Report :" + result.Locality.toString());
