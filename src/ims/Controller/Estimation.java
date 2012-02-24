@@ -29,10 +29,11 @@ public class Estimation {
 		//checks to see if ingredients exist
 		if( estimationList !=null && !estimationList.isEmpty() ) {
 			for(Ingredient item : estimationList) {
-				double quantity = Rules.GetQuantity(item.getQuantity(), item.getUnitType());
-				String unitType = Rules.GetAcronymOfUnitType(item.getUnitType());
+				double quantity = Rules.GetQuantity(item.getQuantity(), item.getUnitType()); //converts the quantity to liter or kg
+				String unitType = Rules.GetAcronymOfUnitType(item.getUnitType());	//returns the correct acronym
+				double totalQuantity = quantity * ui.pizzaNumber; //calculates the total quantity
 				
-				Ingredient tempIngredient = new Ingredient(item.getName(), quantity, 0, unitType);
+				Ingredient tempIngredient = new Ingredient(item.getName(), totalQuantity, 0, unitType);
 				EstimationReport.add(tempIngredient);
 			}
 			isDone = true;

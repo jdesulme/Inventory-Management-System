@@ -135,7 +135,7 @@ public class Program {
 		isValid = false; // Get ready for next validation
 		while(!isValid){
 			System.out.println("Enter the month to get inventory information");
-			System.out.println("Instructions: Use the number value for a month ex/ Januaray = 1");
+			System.out.println("Instructions: Use the number value for a month ex/ January = 1 & May = 5");
 			value = scan.next();
 			
 			 if(IsToInteger(value)){
