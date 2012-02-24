@@ -43,7 +43,7 @@ public class DataAccess {
 			//Create order2
 			ArrayList<Ingredient> ingredients2 = new ArrayList<Ingredient>();
 			Ingredient egg = new Ingredient ("Egg", 12, 3, "dozens");
-			Ingredient italianSausage = new Ingredient ("Italian Sausage", 500, 10, "grams");
+			Ingredient italianSausage = new Ingredient ("Sausage", 500, 10, "grams");
 			Ingredient oil1 = new Ingredient ("Oil", 600, 2, "milliliters");
 			ingredients2.add(egg);
 			ingredients2.add(italianSausage);
@@ -180,7 +180,7 @@ public class DataAccess {
 		Pizza pepperoniSmall = new Pizza ("Pepperoni", "Small", ingredientsPS);
 		
 		//Create meat lover pizza size large
-		Ingredient italianSausageMLL = new Ingredient("Italian Sausage", 9, 0, "grams");
+		Ingredient italianSausageMLL = new Ingredient("Sausage", 9, 0, "grams");
 		Ingredient baconMLL = new Ingredient("Bacon", 9, 0, "grams");
 		ArrayList<Ingredient> ingredientsMLL = new ArrayList<Ingredient>();
 		ingredientsMLL.add(doughL);
@@ -191,7 +191,7 @@ public class DataAccess {
 		Pizza meatLoverLarge = new Pizza ("Meat Lover", "Large", ingredientsMLL);
 		
 		//Create meat lover pizza size medium
-		Ingredient italianSausageMLM = new Ingredient("Italian Sausage", 7, 0, "grams");
+		Ingredient italianSausageMLM = new Ingredient("Sausage", 7, 0, "grams");
 		Ingredient baconMLM = new Ingredient("Bacon", 7, 0, "grams");
 		ArrayList<Ingredient> ingredientsMLM = new ArrayList<Ingredient>();
 		ingredientsMLM.add(doughM);
@@ -202,7 +202,7 @@ public class DataAccess {
 		Pizza meatLoverMedium = new Pizza ("Meat Lover", "Medium", ingredientsMLM);
 		
 		//Create meat lover pizza size medium
-		Ingredient italianSausageMLS = new Ingredient("Italian Sausage", 5, 0, "grams");
+		Ingredient italianSausageMLS = new Ingredient("Sausage", 5, 0, "grams");
 		Ingredient baconMLS = new Ingredient("Bacon", 5, 0, "grams");
 		ArrayList<Ingredient> ingredientsMLS = new ArrayList<Ingredient>();
 		ingredientsMLS.add(doughS);

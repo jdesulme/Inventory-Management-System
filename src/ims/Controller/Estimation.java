@@ -14,8 +14,6 @@ import ims.Model.*;
  *
  */
 public class Estimation {
-	ArrayList<Ingredient> EstimationReport;
-	
 	/**
 	 * 
 	 * @param ui

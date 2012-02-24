@@ -161,8 +161,9 @@ public class Program {
 		Event pizzaEvent = Event.DISPLAY_PIZZAS;
 		EventHandler event = new EventHandler(pizzaEvent);
 		event.HandleEvent(uiData);
-
-		for (Pizza item: uiData.pizzaList) {
+		
+		
+		for (Pizza item: uiData.pizzaList ) {
 			System.out.println(item.getPizzaName());
 		}
 		
@@ -243,34 +244,42 @@ public class Program {
 	 */
 	private void DisplayEstimationResult(UIEstimation result) {
 		if( result != null ){
-			
-			/*
+		
 			Scanner scan = new Scanner(System.in);
 			
-			System.out.printf("Please select the ingredients that you do not want to estimate by entering the item number");
-			int inputRemove = scan.nextInt();
+			System.out.printf("Please enter ingredients that you do not want to estimate. %n");
+			System.out.printf("Instructions: Enter the ingredient name and use space to separate them %n");
 			
-			int counter = 0; //keeps track of the position
 			for (Ingredient ingredient : result.IngredientList) {
-				System.out.printf("%d %-19s %n", counter, ingredient.getName() ); 
-				counter++;
+				System.out.printf( "%-19s %n", ingredient.getName() ); 
 			}	
-			*/
 			
-		
+			String inputRemove = scan.nextLine();
+			
+			String ingredientRemoval[] = inputRemove.split(" ");
+			
+			for( int i=0; i < result.IngredientList.size(); i++  ){
+				
+				for(String value:ingredientRemoval ) {
+				
+					if(result.IngredientList.get(i).getName().equalsIgnoreCase(value)){
+						result.IngredientList.remove(i);
+					}
+					
+				}
+			}
+			
 			System.out.println("====================Estimation Report====================");
 			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
 			System.out.println("==========================================================");
 		
-			
 			for (Ingredient ingredient : result.IngredientList) {
 				
-				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
-																   ingredient.getQuantity(),
-														           ingredient.getUnitType(),
-														           ingredient.getCost()); 
+				System.out.printf("%-19s %,11.2f %-5.6s $%,10.2f %n", ingredient.getName(), 
+																   	  ingredient.getQuantity(),
+														              ingredient.getUnitType(),
+														              ingredient.getCost()); 
 			}	
-			
 			
 		}
 	}
