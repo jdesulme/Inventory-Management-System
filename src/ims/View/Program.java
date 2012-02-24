@@ -181,7 +181,7 @@ public class Program {
 		event.HandleEvent(uiData);
 		
 		String temp = null; //used to hold duplicates
-		
+		System.out.println("Types of pizzas");
 		for (Pizza item: uiData.pizzaList ) {
 
 			if( temp != item.getPizzaName() ){
