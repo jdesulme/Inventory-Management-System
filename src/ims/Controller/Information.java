@@ -3,6 +3,7 @@
  */
 package ims.Controller;
 
+
 import java.util.ArrayList;
 
 import ims.Model.*;
@@ -14,10 +15,21 @@ import ims.DataLayer.*;
 public class Information {
 
 	
-	public boolean ValidateInput(int year, int month){
-		boolean isValid = false;
-		
-		return isValid;
+	public ArrayList<Order> GetValidOrders(int year, int month,ArrayList<Order> orderList){
+		 
+		 if(orderList!=null && !orderList.isEmpty()){
+				//Looping the order list
+			 int i=orderList.size()-1;
+			 while(i>=0){
+				
+				String orderDate = orderList.get(i).getOrderDate();
+				if(!orderDate.split("/")[0].contains((String.valueOf(month))) || !orderDate.contains (String.valueOf(year))){
+							orderList.remove(i);
+				}
+				i--;
+			}
+		  }
+		return orderList;
 	}
 	
 	/**
@@ -32,8 +44,9 @@ public class Information {
 		DataAccess dataAccess  = new DataAccess();
 		ArrayList<Ingredient> InformationReport = uiInformation.IngredientList;//using UI information data as reference 
 		ArrayList<Order> orderList = dataAccess.GetOrderList(uiInformation.Locality);
-		double totalCost = 0.0;
 		
+		double totalCost = 0.0;
+		orderList =  GetValidOrders(uiInformation.Year,uiInformation.Month,orderList);
 		if(orderList!=null && !orderList.isEmpty()){
 			//Looping the order list
 			for (Order order : orderList) {
