@@ -294,7 +294,8 @@ public class Program {
 				}
 			}
 			
-			System.out.println("====================Estimation Report========");
+			System.out.println();
+			System.out.println("============Estimation Report================");
 			System.out.println("Ingredient Name        Quantity Unit");
 			System.out.println("=============================================");
 		
