@@ -15,17 +15,17 @@ import ims.Model.*;
  */
 public class  EventHandler {
 	
-	//private static final String UIInformation = null;
-	public  EntityBase Result;
-	private Event UIEvent;
+	public  EntityBase Result; //holds the result processed by the controllers
+	private Event UIEvent; //holds the event that occurred in ui . 
 	
 	public EventHandler(Event uiEvent){
 		this.UIEvent = uiEvent;
 	}
 	
 	/**
-	 * 
-	 * @param data
+	 * Accepts the event and parameters which are passed from 
+	 * Program class and create either an Information object or Estimation object
+	 * @param data 	information gathered from the ui
 	 * @return
 	 */
 	public boolean  HandleEvent(EntityBase data){
@@ -58,8 +58,8 @@ public class  EventHandler {
 	}
 	
 	/**
-	 * 
-	 * @param estimation
+	 * Gets the pizza list used in the  restaurant from the data access layer and returns it back
+	 * @param estimation the information from the ui
 	 * @return
 	 */
 	private ArrayList<Pizza> GetPizzaList(UIEstimation estimation) {
