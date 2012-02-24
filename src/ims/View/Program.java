@@ -3,8 +3,7 @@
  */
 package ims.View;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 import ims.Model.*;
 import ims.Controller.*;
@@ -20,6 +19,7 @@ public class Program {
 	 */
 	private EntityBase UIData;
 	private static Event event;
+	
 	public static void main(String[] args) {
 		
 		Program program = new Program();
@@ -32,7 +32,7 @@ public class Program {
 			program.DisplayResult(program.UIData);
 		}
 		else {
-			System.out.println("Error Occured");
+			System.out.println("Error Occurred");
 		}
 		
 	}
@@ -220,9 +220,25 @@ public class Program {
 		}
 	}
 
-		private void DisplayEstimationResult(UIEstimation result) {
-			// TODO Auto-generated method stub
+	private void DisplayEstimationResult(UIEstimation result) {
+		
+		if( result != null ){
+			System.out.println("====================Estimation Report====================");
+			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
+			System.out.println("==========================================================");
+		
+			
+			for (Ingredient ingredient : result.IngredientList) {
+				
+				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+																   ingredient.getQuantity(),
+														           ingredient.getUnitType(),
+														           ingredient.getCost()); 
+			}	
+			
+			
 		}
+	}
 		
 	/*
 	 * Displays the processed information result
@@ -238,8 +254,6 @@ public class Program {
 			System.out.println("==========================================================");
 			
 			for (Ingredient ingredient : result.IngredientList) {
-				
-				//System.out.println(ingredient.getName() + "    "+ ingredient.getQuantity() + "    " + ingredient.getUnitType() + "    "+ ingredient.getCost()); 
 				
 				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
 																   ingredient.getQuantity(),

@@ -20,7 +20,6 @@ public class Estimation {
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
 		ArrayList<Ingredient> EstimationReport = ui.IngredientList;
-		if(EstimationReport==null) EstimationReport = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName, ui.pizzaSize);
 		
 		if( estimationList !=null && !estimationList.isEmpty() ) {

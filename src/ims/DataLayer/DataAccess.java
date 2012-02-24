@@ -143,13 +143,13 @@ public class DataAccess {
 		
 		//Create base ingredients dough, oil, and cheese for differensize of pizza
 		Ingredient cheeseL = new Ingredient("Cheese", 12, 0, "grams");
-		Ingredient oilL = new Ingredient ("Oil", 15, 0, "milliliter");
+		Ingredient oilL = new Ingredient ("Oil", 15, 0, "milliliters");
 		Ingredient doughL = new Ingredient ("Dough", 300, 0, "grams");
 		Ingredient cheeseM = new Ingredient("Cheese", 12, 0, "grams");
-		Ingredient oilM = new Ingredient ("Oil", 10, 0, "milliliter");
+		Ingredient oilM = new Ingredient ("Oil", 10, 0, "milliliters");
 		Ingredient doughM = new Ingredient ("Dough", 250, 0, "grams");
 		Ingredient cheeseS = new Ingredient("Cheese", 10, 0, "grams");
-		Ingredient oilS = new Ingredient ("Oil", 10, 0, "milliliter");
+		Ingredient oilS = new Ingredient ("Oil", 10, 0, "milliliters");
 		Ingredient doughS = new Ingredient ("Dough", 200, 0, "grams");
 		
 		//Create pepperoni pizza size large

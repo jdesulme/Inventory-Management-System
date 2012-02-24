@@ -33,14 +33,15 @@ public class  EventHandler {
 			UIInformation result = (UIInformation) data;
 			result.IngredientList = new ArrayList<Ingredient>();
 			isSuccess = information.ProcessInformation(result);
-			//result.IngredientList = UIInformation;
-			//Result = result;			
+	
 		} 		 
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 		
 			Estimation estimation = new Estimation();
 			UIEstimation result = (UIEstimation) data;
+			result.IngredientList = new ArrayList<Ingredient>();
 			isSuccess = estimation.ProcessInformation(result);			
+
 		} 
 		else if (UIEvent.equals(Event.DISPLAY_PIZZAS)) {
 			
@@ -54,6 +55,5 @@ public class  EventHandler {
 	private ArrayList<Pizza> GetPizzaList(UIEstimation estimation) {
 		DataAccess dataAccess = new DataAccess();
 		return dataAccess.GetPizzaList();
-		
 	}
 }
