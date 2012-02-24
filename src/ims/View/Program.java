@@ -49,9 +49,16 @@ public class Program {
 			System.out.println("Enter the option");
 			System.out.println("1.Evaluate Inventory Level");
 			System.out.println("2.Estimate Quantity of Ingredients");
+			System.out.println("3.Exit");
 			Scanner scan = new Scanner(System.in);
-			option = scan.nextInt();
-		} while(option<0 || option>2);
+			try{
+				option = scan.nextInt();
+			}
+			catch(InputMismatchException ex)
+			{
+				option =0;
+			}
+		} while(option<1 || option>3);
 		
 		Event event = null;
 		
@@ -62,6 +69,10 @@ public class Program {
 		else if (option == 2){
 			event = Event.ESTIMATE_QUANTITY;
 			UIData = GetEstimationData();
+		}
+		else if (option == 3){
+			System.out.println("Program exit");
+			System.exit(0);
 		}
 		return event;		
 	}
