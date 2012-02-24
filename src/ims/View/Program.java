@@ -3,6 +3,7 @@
  */
 package ims.View;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import ims.Model.*;
@@ -18,13 +19,17 @@ public class Program {
 	 * @param args
 	 */
 	private EntityBase UIData;
-	
+	private static Event event;
 	public static void main(String[] args) {
+		
 		Program program = new Program();
-		Event event = program.GetEvent();
+		
+		event = program.GetEvent();
+		
 		EventHandler eventHandler = new EventHandler(event);
+		
 		if(eventHandler.HandleEvent(program.UIData)){
-			program.DisplayInformationResult((UIInformation) program.UIData);
+			program.DisplayResult(program.UIData);
 		}
 		else {
 			System.out.println("Error Occured");
@@ -32,7 +37,7 @@ public class Program {
 		
 	}
 	
-	private Event GetEvent(){
+	public Event GetEvent(){
 		int option = 0;
 		
 		do{
@@ -150,9 +155,14 @@ public class Program {
 		//retrieve and display list of all existing pizza's'
 		Event pizzaEvent = Event.DISPLAY_PIZZAS;
 		EventHandler event = new EventHandler(pizzaEvent);
-		event.DisplayResult();
+		event.HandleEvent(uiData);
+
+		for (Pizza item: uiData.pizzaList) {
+			System.out.println(item.getPizzaName());
+		}
 		
 		isValid = false;
+		scan.skip("\n");
 		do {
 			System.out.println("Choose the type of pizza to be estimated");
 			//validation to check if that input exists
@@ -199,6 +209,21 @@ public class Program {
 		return isParsed;
 	}
 	
+	public void DisplayResult(EntityBase uiData){
+		
+		if(event.equals(Event.EVALUATE_INVENTORY)){		
+			DisplayInformationResult((UIInformation)uiData);		
+		}
+		else if (event.equals(Event.ESTIMATE_QUANTITY)) {
+	
+			DisplayEstimationResult((UIEstimation)uiData);
+		}
+	}
+
+		private void DisplayEstimationResult(UIEstimation result) {
+			// TODO Auto-generated method stub
+		}
+		
 	/*
 	 * Displays the processed information result
 	 */

@@ -5,6 +5,7 @@ package ims.Controller;
 
 import java.util.ArrayList;
 
+
 import ims.DataLayer.DataAccess;
 import ims.Model.*;
 
@@ -34,45 +35,25 @@ public class  EventHandler {
 			isSuccess = information.ProcessInformation(result);
 			//result.IngredientList = UIInformation;
 			//Result = result;			
-		} 		
+		} 		 
 		else if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
 		
 			Estimation estimation = new Estimation();
 			UIEstimation result = (UIEstimation) data;
-			isSuccess = estimation.ProcessInformation(result);
-			
+			isSuccess = estimation.ProcessInformation(result);			
 		} 
-		
+		else if (UIEvent.equals(Event.DISPLAY_PIZZAS)) {
+			
+			UIEstimation estimate = (UIEstimation)data;			
+			estimate.pizzaList = GetPizzaList(estimate);
+			isSuccess = true;
+		} 
 		return isSuccess;
 	}
 	
-	
-	
-	
-	public void DisplayResult(){
-		
-	 if (UIEvent.equals(Event.ESTIMATE_QUANTITY)) {
-			DisplayEstimationResult();
-		}
-		else if (UIEvent.equals(Event.DISPLAY_PIZZAS)) {
-			DisplayPizzas();
-		}
-	}
-
-
-	private void DisplayEstimationResult() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	private void DisplayPizzas() {
+	private ArrayList<Pizza> GetPizzaList(UIEstimation estimation) {
 		DataAccess dataAccess = new DataAccess();
-		ArrayList<Pizza> pizzaList = dataAccess.GetPizzaList();
-		
-		for (Pizza item: pizzaList) {
-			System.out.println(item.getPizzaName());
-		}
+		return dataAccess.GetPizzaList();
 		
 	}
-	
 }
