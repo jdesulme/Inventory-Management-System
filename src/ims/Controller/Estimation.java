@@ -30,7 +30,7 @@ public class Estimation {
 				double quantity = Rules.GetQuantity(item.getQuantity(), item.getUnitType());
 				String unitType = Rules.GetAcronymOfUnitType(item.getUnitType());
 				
-				Ingredient tempIngredient = new Ingredient(item.getName(), quantity, item.calcQuantityCost(ui.pizzaNumber), unitType);
+				Ingredient tempIngredient = new Ingredient(item.getName(), quantity, 0, unitType);
 				EstimationReport.add(tempIngredient);
 			}
 			isDone = true;

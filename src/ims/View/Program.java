@@ -24,16 +24,20 @@ public class Program {
 		
 		Program program = new Program();
 		
-		event = program.GetEvent();
+		while(true){
 		
-		EventHandler eventHandler = new EventHandler(event);
-		
-		if(eventHandler.HandleEvent(program.UIData)){
-			program.DisplayResult(program.UIData);
-			System.out.println("\n\nThank You for using our program");
-		}
-		else {
-			System.out.println("Error Occurred");
+			event = program.GetEvent();
+			
+			EventHandler eventHandler = new EventHandler(event);
+			
+			if(eventHandler.HandleEvent(program.UIData)){
+				program.DisplayResult(program.UIData);
+				System.out.println("\n\nThank You for using our program");
+			}
+			else {
+				System.out.println("Error Occurred");
+			}
+			
 		}
 		
 	}
@@ -174,9 +178,15 @@ public class Program {
 		EventHandler event = new EventHandler(pizzaEvent);
 		event.HandleEvent(uiData);
 		
+		String temp = null; //used to hold duplicates
 		
 		for (Pizza item: uiData.pizzaList ) {
-			System.out.println(item.getPizzaName());
+
+			if( temp != item.getPizzaName() ){
+				System.out.println(item.getPizzaName());
+				temp = item.getPizzaName();
+			}
+			
 		}
 		
 		isValid = false;
@@ -280,16 +290,15 @@ public class Program {
 				}
 			}
 			
-			System.out.println("====================Estimation Report====================");
-			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
-			System.out.println("==========================================================");
+			System.out.println("====================Estimation Report========");
+			System.out.println("Ingredient Name        Quantity Unit");
+			System.out.println("=============================================");
 		
 			for (Ingredient ingredient : result.IngredientList) {
 				
-				System.out.printf("%-19s %,11.2f %-5.6s $%,10.2f %n", ingredient.getName(), 
+				System.out.printf("%-19s %,11.2f %-5.6s %n", ingredient.getName(), 
 																   	  ingredient.getQuantity(),
-														              ingredient.getUnitType(),
-														              ingredient.getCost()); 
+														              ingredient.getUnitType()); 
 			}	
 			
 		}

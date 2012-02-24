@@ -86,16 +86,6 @@ public class Ingredient {
 	}
 	
 	/**
-	 * Calculates the cost of pizza's given a number
-	 * @param numPizza
-	 * @return
-	 */
-	public double calcQuantityCost(int numPizza) {
-	 	return numPizza * getQuantity(); 
-	}
-	
-	
-	/**
 	 * To find the ingredient in the list of ingredients
 	 * @param ingredientList
 	 * @return boolean

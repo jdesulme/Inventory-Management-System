@@ -38,10 +38,10 @@ public class Rules {
 	public static double GetQuantity(double value, String unitType){
 		double convertedValue = 0.0;
 		
-		if(unitType == "g"){//If unit type is grams convert to kilograms
+		if(unitType.equalsIgnoreCase("grams")){//If unit type is grams convert to kilograms
 			convertedValue =  convertToKg(value);
 		}
-		else if(unitType == "ml"){//If unit type is mili liter convert to liters
+		else if(unitType.equalsIgnoreCase("millilters")){//If unit type is mili liter convert to liters
 			convertedValue =  convertToLiter(value);			
 		}
 		else{//Do nothing 
@@ -59,10 +59,10 @@ public class Rules {
 		String acronym;
 		
 		if(abbreviation.equalsIgnoreCase("milliliters")){
-			acronym = "liters";
+			acronym = "L";
 		}
 		else if(abbreviation.equalsIgnoreCase("liters")){
-			acronym = "liters";
+			acronym = "L";
 		}
 		else if(abbreviation.equalsIgnoreCase("kilograms")){
 			acronym = "kg";
