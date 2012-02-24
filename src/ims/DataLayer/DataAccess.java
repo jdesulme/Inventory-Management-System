@@ -199,7 +199,7 @@ public class DataAccess {
 		ingredientsMLM.add(oilM);
 		ingredientsMLM.add(italianSausageMLM);
 		ingredientsMLM.add(baconMLM);
-		Pizza meatLoverMedium = new Pizza ("Meat Lover", "Large", ingredientsMLM);
+		Pizza meatLoverMedium = new Pizza ("Meat Lover", "Medium", ingredientsMLM);
 		
 		//Create meat lover pizza size medium
 		Ingredient italianSausageMLS = new Ingredient("Italian Sausage", 5, 0, "grams");
@@ -210,7 +210,7 @@ public class DataAccess {
 		ingredientsMLS.add(oilS);
 		ingredientsMLS.add(italianSausageMLS);
 		ingredientsMLS.add(baconMLS);
-		Pizza meatLoverSmall = new Pizza ("Meat Lover", "Large", ingredientsMLS);
+		Pizza meatLoverSmall = new Pizza ("Meat Lover", "Small", ingredientsMLS);
 		
 		pizzaList.add(pepperoniLarge);
 		pizzaList.add(pepperoniMedium);

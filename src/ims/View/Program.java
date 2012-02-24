@@ -30,6 +30,7 @@ public class Program {
 		
 		if(eventHandler.HandleEvent(program.UIData)){
 			program.DisplayResult(program.UIData);
+			System.out.println("\n\nThank You for using our program");
 		}
 		else {
 			System.out.println("Error Occurred");
