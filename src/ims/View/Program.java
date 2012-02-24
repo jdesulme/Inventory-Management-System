@@ -131,6 +131,7 @@ public class Program {
 		isValid = false; // Get ready for next validation
 		while(!isValid){
 			System.out.println("Enter the month to get inventory information");
+			System.out.println("Instructions: Use the number value for a month ex/ Januaray = 1");
 			value = scan.next();
 			
 			 if(IsToInteger(value)){
@@ -181,7 +182,7 @@ public class Program {
 		isValid = false;
 		scan.skip("\n");
 		do {
-			System.out.println("Choose the type of pizza to be estimated");
+			System.out.println("Enter the type of pizza to be estimated");
 			String inputNum = scan.nextLine();
 			
 			for (Pizza item: uiData.pizzaList) {
@@ -198,8 +199,7 @@ public class Program {
 		//user enters the size of the pizza to be estimated
 		isValid = false;
 		do {
-			System.out.println("Choose the size of the pizza to be estimated (small, medium, or large)");
-			
+			System.out.println("Enter the size of the pizza to be estimated (small, medium, or large)");
 			input = scan.next();
 			
 			for(Sizes size : Sizes.values()){
@@ -258,8 +258,7 @@ public class Program {
 		
 			Scanner scan = new Scanner(System.in);
 			
-			System.out.printf("Please enter ingredients that you do not want to estimate. %n");
-			System.out.printf("Instructions: Enter the ingredient name and use space to separate them %n");
+			System.out.printf("Instructions: Enter ingredient name and a space to remove ingredients you do not want to estimate  %n");
 			
 			for (Ingredient ingredient : result.IngredientList) {
 				System.out.printf( "%-19s %n", ingredient.getName() ); 
@@ -275,6 +274,7 @@ public class Program {
 				
 					if(result.IngredientList.get(i).getName().equalsIgnoreCase(value)){
 						result.IngredientList.remove(i);
+	
 					}
 					
 				}
