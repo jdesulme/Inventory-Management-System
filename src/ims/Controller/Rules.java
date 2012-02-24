@@ -26,7 +26,7 @@ public class Rules {
 	 * @return the conversion
 	 */
 	private  static double convertToLiter(double mL) {
-		return mL/1000;
+		return mL / 1000;
 	}
 	
 	/**
@@ -51,8 +51,10 @@ public class Rules {
 		return convertedValue;
 	}
 	
-	/*
+	/**
 	 * Get Acronym of unitsType based on the project rule
+	 * @param: string abbreviation
+	 * @return : string acronym
 	 */
 	public static String  GetAcronymOfUnitType(String abbreviation){
 		
