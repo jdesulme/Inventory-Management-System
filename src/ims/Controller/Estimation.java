@@ -15,9 +15,10 @@ import ims.Model.*;
  */
 public class Estimation {
 	/**
-	 * 
+	 * Estimates the quantity of ingredients used to make 
+	 * certain number of a specific type of pizza based upon the user inputs.
 	 * @param ui
-	 * @return
+	 * @return 
 	 */
 	public boolean ProcessInformation(UIEstimation ui){
 		boolean isDone = false;
@@ -25,6 +26,7 @@ public class Estimation {
 		ArrayList<Ingredient> EstimationReport = ui.IngredientList;
 		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName, ui.pizzaSize);
 		
+		//checks to see if ingredients exist
 		if( estimationList !=null && !estimationList.isEmpty() ) {
 			for(Ingredient item : estimationList) {
 				double quantity = Rules.GetQuantity(item.getQuantity(), item.getUnitType());
@@ -44,6 +46,7 @@ public class Estimation {
 
 	/**
 	 * Checks to see if the user entered a number
+	 * so that we can estimate the quantity of ingredients properly
 	 * @param numPizza the number of pizza made
 	 * @return
 	 */
