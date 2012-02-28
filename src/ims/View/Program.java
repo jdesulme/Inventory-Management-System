@@ -192,7 +192,7 @@ public class Program {
 		}
 		
 		isValid = false;
-		scan.skip("\n");
+		scan.nextLine();
 		do {
 			System.out.println("Enter the type of pizza to be estimated");
 			String inputNum = scan.nextLine();
