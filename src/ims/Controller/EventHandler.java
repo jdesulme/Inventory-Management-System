@@ -9,7 +9,7 @@ import ims.DataLayer.DataAccess;
 import ims.Model.*;
 
 /**
- * @author Minh, Kumar, Jean
+ * @author Minh, Kumar, Jean, Abdulla
  *
  */
 public class  EventHandler {
