@@ -3,10 +3,10 @@
  */
 package ims.Controller;
 
+import ims.DataLayer.DataAccess;
+import ims.Model.Ingredient;
+import ims.Model.UIEstimation;
 import java.util.ArrayList;
-
-import ims.DataLayer.*;
-import ims.Model.*;
 
 
 /**
@@ -67,4 +67,5 @@ public class Estimation {
 		
 		return isTrue;
 	}
+        
 }
