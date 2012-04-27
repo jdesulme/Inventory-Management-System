@@ -1,9 +1,0 @@
-Inventory Management system 
-
-Its a inventory management system built for a vietnam restaurant
-
-View does all the display logic 
-
-Controller does all the business logic
-
-Model has all the data for processing and view
