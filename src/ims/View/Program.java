@@ -25,7 +25,7 @@ public class Program {
 		Program program = new Program();
 		
 		while(true){
-		
+		   //nehamn
 			event = program.GetEvent();
 			
 			EventHandler eventHandler = new EventHandler(event);
