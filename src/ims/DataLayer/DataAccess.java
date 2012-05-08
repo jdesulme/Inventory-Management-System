@@ -3,9 +3,9 @@
  */
 package ims.DataLayer;
 
-import java.util.ArrayList;
+import ims.DataLayer.Common.*;
 import ims.Model.*;
-
+import java.util.ArrayList;
 /**
  * @author Minh, Kumar, Jean
  *
@@ -19,7 +19,10 @@ public class DataAccess {
 	public ArrayList<Order> GetOrderList(Location locality){
 		
 		Location tempLocal = locality;
-		
+                //Sample Code
+		DataBase db = new DataBase(ConnectionType.ODBC);
+                db.getConnection();
+                    
 		//Create orderList
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		
