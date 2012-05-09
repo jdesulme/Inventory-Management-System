@@ -2,7 +2,9 @@
  *  Create ODBC connection using ODBC specifc connection details
  */
 package ims.DataLayer.Common;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author student

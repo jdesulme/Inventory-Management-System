@@ -25,7 +25,7 @@ public class Program {
 		Program program = new Program();
 		
 		while(true){
-		   //nehamn
+		
 			event = program.GetEvent();
 			
 			EventHandler eventHandler = new EventHandler(event);
@@ -313,7 +313,7 @@ public class Program {
 	 * Formats & Displays the processed information result
 	 * @param result
 	 */
-	private void DisplayInformationResult(UIInformation result) {
+	public void DisplayInformationResult(UIInformation result) {
 		
 		if(result!=null){
 			System.out.println("====================Information Report====================");
