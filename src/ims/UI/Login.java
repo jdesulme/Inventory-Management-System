@@ -104,7 +104,7 @@ public class Login extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user = txtUserName.getText();
-        String pass = txtPassword.getText();
+        String pass = txtPassword.getPassword().toString();
         
         if(!user.isEmpty() && user != null && !pass.isEmpty() && pass != null){
             System.out.println(user + "  " + pass);
