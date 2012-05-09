@@ -4,6 +4,8 @@
  */
 package ims.UI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kumar
@@ -43,6 +45,11 @@ public class Login extends javax.swing.JPanel {
 
         btnLogin.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnLogin.setLabel("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         lblHeading.setAlignment(java.awt.Label.CENTER);
         lblHeading.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -94,6 +101,23 @@ public class Login extends javax.swing.JPanel {
         txtUserName.getAccessibleContext().setAccessibleName("txtUserName");
         btnLogin.getAccessibleContext().setAccessibleName("btnLogin");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String user = txtUserName.getText();
+        String pass = txtPassword.getText();
+        
+        if(!user.isEmpty() && user != null && !pass.isEmpty() && pass != null){
+            System.out.println(user + "  " + pass);
+            //TODO: create a function that makes a call to the db and checks
+            //TODO: once passed direct them to the correct screen
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                    "Username and Password fields must be populated",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnLogin;
     private java.awt.Label lblHeading;
