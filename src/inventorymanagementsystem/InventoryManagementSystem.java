@@ -22,7 +22,7 @@ public class InventoryManagementSystem {
         //login.setUI(null);
         System.out.println("hello");
         
-        FrontPage frontPage = new FrontPage();
-        frontPage.setVisible(true);
+        //FrontPage frontPage = new FrontPage();
+        //frontPage.setVisible(true);
     }
 }

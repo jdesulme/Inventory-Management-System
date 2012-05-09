@@ -41,29 +41,18 @@ public class CheckInventory extends javax.swing.JFrame {
 
         cmbBranch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Branch");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Period");
 
         lblFromDate.setText("From Date:");
 
-        txtFromDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFromDateActionPerformed(evt);
-            }
-        });
-
         lblToDate.setText("To Date:");
 
-        btnCheckInventory.setFont(new java.awt.Font("Tahoma", 1, 18));
+        btnCheckInventory.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCheckInventory.setText("Check Inventory");
-        btnCheckInventory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckInventoryActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,14 +121,6 @@ public class CheckInventory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtFromDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFromDateActionPerformed
-
-private void btnCheckInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInventoryActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_btnCheckInventoryActionPerformed
 
     /**
      * @param args the command line arguments
