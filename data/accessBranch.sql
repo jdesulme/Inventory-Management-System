@@ -12,6 +12,8 @@ CREATE  TABLE Ingredient (
 
 
 
+
+
 -- -----------------------------------------------------
 -- Table Branch
 -- -----------------------------------------------------
@@ -69,3 +71,8 @@ CREATE  TABLE Branch_Ingredient (
   idIngredient INT NOT NULL ,
   quantityInStock INT NULL ,
   PRIMARY KEY (idBranch, idIngredient) ) 
+
+
+-- -----------------------------------------------------
+-- USED ADO Console to run the queries
+-- -----------------------------------------------------
