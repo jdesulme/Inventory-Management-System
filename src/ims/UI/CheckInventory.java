@@ -4,17 +4,26 @@
  */
 package ims.UI;
 
+import ims.Controller.*;
+import ims.Controller.EventHandler;
+import ims.Model.*;
+import ims.View.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author kumar
  */
 public class CheckInventory extends javax.swing.JFrame {
+    private static Event event;
 
     /**
      * Creates new form CheckInventory
      */
     public CheckInventory() {
         initComponents();
+        intializeUI();
     }
 
     /**
@@ -26,20 +35,26 @@ public class CheckInventory extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
+        LocationList = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtYear = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtMonth = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        LocationList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocationListActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Branch");
@@ -49,9 +64,9 @@ public class CheckInventory extends javax.swing.JFrame {
 
         jLabel3.setText("From Date:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtYearActionPerformed(evt);
             }
         });
 
@@ -59,19 +74,38 @@ public class CheckInventory extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Check Inventory");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,28 +115,35 @@ public class CheckInventory extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(170, 170, 170))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LocationList, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,24 +154,83 @@ public class CheckInventory extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LocationList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtYearActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int month = Integer.parseInt(txtMonth.getText());
+        int year = Integer.parseInt(txtYear.getText());
+        String selected = LocationList.getSelectedItem().toString();
+       
+        EventHandler eventHandler = new EventHandler(event.EVALUATE_INVENTORY);
+        
+        //UI information Modal object
+        UIInformation uiInformation = new UIInformation();
+        uiInformation.Locality = Location.valueOf(LocationList.getSelectedItem().toString());
+        uiInformation.Year = year;
+        uiInformation.Month = month;
+        
+        //String location= uiInformation.Locality.toString();
+        if(eventHandler.HandleEvent(uiInformation)){
+           // jTable1.getModel().setValueAt(location,0,0);//uiInformation.Locality.toString());
+            //jTabel1.getModel().setValueAt(,0,1)
+            //DisplayInformationResult(uiInformation);
+            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model2 = new DefaultTableModel();
+            jTable1.setModel(model);
+            jTable2.setModel(model2);
+            model2.setColumnIdentifiers(new String[]{"Bracnh","Month","Year","Total Cost"});
+            model2.addRow(new String[] {uiInformation.Locality.toString(),uiInformation.Month.toString(),
+                                            uiInformation.Year.toString(),Double.toString(uiInformation.TotalCost) });
+            //model.addRow(Double.toString(uiInformation.TotalCost.));
+            model.setColumnIdentifiers(new String[] {"Ingredient Name", "Quntity", "Unit", "Cost"});
+            //int i=0;
+            for (Ingredient ingredient : uiInformation.IngredientList) {   
+            model.addRow(new String[] { ingredient.getName(),Double.toString(ingredient.getQuantity()),
+                                                ingredient.getUnitType(),Double.toString(ingredient.getCost())});
+            //model.addRow(row);
+            
+            /*
+            System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+                                        ingredient.getQuantity(),
+                                        ingredient.getUnitType(),
+                                        ingredient.getCost()); 
+                                        * 
+                                        */
+            //int size =uiInformation.IngredientList.size();
+            //for( i=0; i<=size-1;i++){
+            //jTable1.getModel().setValueAt(ingredient.getName(),i,i+1);
+            //System.out.println(ingredient.getName());
+            //i++;
+            //}
+        }
+            //model.addRow(new String[]{"\nTotal cost: "+Double.toString(uiInformation.TotalCost)});
+       
+        }       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void LocationListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LocationListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,16 +273,60 @@ public class CheckInventory extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private void intializeUI(){
+        
+        //EventHandler eventHandler = new EventHandler(event);
+        for(Location locValue : Location.values() ){
+				
+            LocationList.addItem(locValue);
+        }
+        
+       // UIInformation uiInformation;
+        
+    }
+    
+    /**
+	 * Formats & Displays the processed information result
+	 * @param result
+	 */
+	public void DisplayInformationResult(UIInformation result) {
+		
+		if(result!=null){
+                    //System.out.println(result.length);
+			System.out.println("====================Information Report====================");
+			System.out.print("Report :" + result.Locality.toString());
+			System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
+			System.out.println("==========================================================");
+			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
+			System.out.println("==========================================================");
+			
+			for (Ingredient ingredient : result.IngredientList) {
+				
+				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+																   ingredient.getQuantity(),
+														           ingredient.getUnitType(),
+														           ingredient.getCost()); 
+			}
+			System.out.println("==========================================================");
+			System.out.println("Total Cost: $"+ result.TotalCost);
+			System.out.println("==========================================================");			
+		}
+	}
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox LocationList;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField txtMonth;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
