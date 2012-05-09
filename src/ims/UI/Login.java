@@ -4,6 +4,7 @@
  */
 package ims.UI;
 
+import ims.Controller.LoginHandler;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form LoginHandler
      */
     public Login() {
         initComponents();
@@ -101,10 +102,16 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user = txtUserName.getText();
-        char[] pass = txtPassword.getPassword();
+        String pass = String.valueOf(txtPassword.getPassword());
         
-        if(!user.isEmpty() && user != null && pass.length > 0 && pass != null){
+        if(!user.isEmpty() && user != null && !pass.isEmpty() && pass != null){
             System.out.println(user + "  " + pass);
+            
+            LoginHandler handleLogin = LoginHandler(user, pass);
+            
+            
+            
+            
             //TODO: create a function that makes a call to the db and checks
             //TODO: once passed direct them to the correct screen
         } else {
@@ -118,7 +125,8 @@ public class Login extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    
+    
     /**
      * @param args the command line arguments
      */
