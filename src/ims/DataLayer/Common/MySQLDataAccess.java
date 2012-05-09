@@ -45,9 +45,9 @@ public class MySQLDataAccess implements IDataAccess{
     
     private void LoadDriver(){
         
-     try{
+     try {
             // LOAD Driver
-            Class.forName(DataBaseConstants.ODBC_DATASOURCE);
+            Class.forName(DataBaseConstants.MYSQL_DRIVER);
             System.out.println("You have loaded a driver!\n");
 	} 
         catch(java.lang.ClassNotFoundException e) {

@@ -5,7 +5,7 @@
 package inventorymanagementsystem;
 
 import ims.UI.FrontPage;
-import ims.UI.Login;
+import ims.UI.LoginPage;
 /**
  *
  * @author kumar
@@ -16,7 +16,7 @@ public class InventoryManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login login = new Login();
+        LoginPage login = new LoginPage();
         login.setVisible(true);
         
         //login.setUI(null);

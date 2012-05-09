@@ -4,52 +4,44 @@
  */
 package ims.Controller;
 
-import java.util.Arrays;
+import ims.DataLayer.*;
+import ims.Model.Login;
+import java.util.*;
 
 /**
  *
  * @author jdesulme
  */
 public class LoginHandler {
-
-    private String username;
-    private String password;
+    private String user; 
+    private String pass;
     private String accessType;
-
     
-    public LoginHandler(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public LoginHandler(String inUsername, char[] inPassword) {
+        DataAccess dataAccess  = new DataAccess();
+        
+        ArrayList<Login> loginList = new ArrayList<Login>();
+        loginList = dataAccess.GetLogin(inUsername);
+        
+        for (Login login : loginList) {
+            user = login.getUsername();
+            pass = login.getPassword();
+            accessType = login.getAccessType();
+        }
+         
+        if( isPasswordCorrect(inPassword) ){
+            //redirect the to the correct correct screen
+        }
+         
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAccessType() {
-        return accessType;
-    }
-
-    public void setAccessType(String accessType) {
-        this.accessType = accessType;
-    }
+    //process login information and redirect to the correct screen
+    
     
     private boolean isPasswordCorrect(char[] input ) {
         boolean isCorrect = true;
         
-        char[] correctPass = this.password.toCharArray();
+        char[] correctPass = this.pass.toCharArray();
         
         if( input.length != correctPass.length ) {
             isCorrect = false;

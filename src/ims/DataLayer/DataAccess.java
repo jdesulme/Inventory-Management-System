@@ -3,15 +3,56 @@
  */
 package ims.DataLayer;
 
+
 import ims.DataLayer.Common.*;
 import ims.Model.*;
 import java.util.ArrayList;
+import java.sql.*;
+
 /**
  * @author Minh, Kumar, Jean
  *
  */
 public class DataAccess {
-	
+        
+        public ArrayList<Login> GetLogin(String user){
+            DataBase db = new DataBase(ConnectionType.MYSQL);
+            ArrayList<Login> loginInfo = new ArrayList<Login>();
+            
+            try {
+                Connection conn = db.getConnection();
+                Statement stmt = conn.createStatement();
+                String query = "SELECT username, password, accessType FROM login WHERE username = " + user;
+                
+                ResultSet rs = stmt.executeQuery(query);
+                
+                while( rs.next() ){
+                    Login result = new Login( rs.getString(1), rs.getString(2), rs.getString(3) );
+                    loginInfo.add(result);
+                }
+                
+                rs.close();
+                stmt.close();
+                conn.close();
+            }
+            catch(SQLException e) {
+                System.err.println("SQL Error(s) as follows:");
+                while (e != null) {
+                    System.err.println("SQL Return Code: " + e.getSQLState());
+                    System.err.println("  Error Message: " + e.getMessage());
+                    System.err.println(" Vendor Message: " + e.getErrorCode());
+                    e = e.getNextException();
+                }	
+            } 
+            catch(Exception e) {
+                System.err.println(e);
+            }  
+            
+            return loginInfo;
+        }
+    
+    
+    
 	/**
 	 * Gets the order list based upon the locality and date 
 	 * 
