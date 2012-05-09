@@ -107,7 +107,8 @@ public class Login extends javax.swing.JFrame {
         if(!user.isEmpty() && user != null && !pass.isEmpty() && pass != null){
             System.out.println(user + "  " + pass);
             
-            LoginHandler handleLogin = LoginHandler(user, pass);
+            LoginHandler handleLogin = new LoginHandler(user, pass);
+            
             
             
             
