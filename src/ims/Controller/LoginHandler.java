@@ -14,7 +14,8 @@ public class LoginHandler {
 
     private String username;
     private String password;
-    private String status;
+    private String accessType;
+
     
     public LoginHandler(String username, String password) {
         this.username = username;
@@ -29,14 +30,6 @@ public class LoginHandler {
         this.password = password;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -45,6 +38,14 @@ public class LoginHandler {
         this.username = username;
     }
 
+    public String getAccessType() {
+        return accessType;
+    }
+
+    public void setAccessType(String accessType) {
+        this.accessType = accessType;
+    }
+    
     private boolean isPasswordCorrect(char[] input ) {
         boolean isCorrect = true;
         

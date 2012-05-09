@@ -14,13 +14,13 @@ public  class  DataBaseConstants {
     public static final String ODBC_DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
     public static final String MYSQL_DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
     
-    public static final String ODBC_DATASOURCE = "TEST";
+    public static final String ODBC_DATASOURCE = "jdbc:odbc:Branch";
     public static final String ODBC_USERNAME = "admin";
-    public static final String ODBC_PASSWORD = "admin";
+    public static final String ODBC_PASSWORD = "";
     
-    public static final String MYSQL_URL = "TEST";
-    public static final String MYSQL_USERNAME = "admin";
-    public static final String MYSQL_PASSWORD = "admin";
+    public static final String MYSQL_URL = "jdb:mysql://localhost/warehouse";
+    public static final String MYSQL_USERNAME = "root";
+    public static final String MYSQL_PASSWORD = "";
    
 }
 
