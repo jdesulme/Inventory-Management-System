@@ -52,6 +52,13 @@ public class  EventHandler {
 			UIEstimation estimate = (UIEstimation)data;			
 			estimate.pizzaList = GetPizzaList(estimate);
 			isSuccess = true;
+		}
+                else if (UIEvent.equals(Event.ORDER)) {
+			
+			UIOrder order = (UIOrder)data;			
+			OrderHandler orderHandler = new OrderHandler(order);
+                        orderHandler.placeOrder();
+			isSuccess = true;
 		} 
 		return isSuccess;
 	}

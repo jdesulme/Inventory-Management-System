@@ -8,7 +8,7 @@ package ims.UI;
  *
  * @author kumar
  */
-public class EstimateWaste extends javax.swing.JPanel {
+public class EstimateWaste extends javax.swing.JFrame {
 
     /**
      * Creates new form EstimateWaste

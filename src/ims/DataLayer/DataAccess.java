@@ -7,10 +7,7 @@ package ims.DataLayer;
 import ims.DataLayer.Common.ConnectionType;
 import ims.DataLayer.Common.DataBase;
 import ims.Model.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -225,7 +222,8 @@ public class DataAccess {
                     
                     if(resultSet.next()  && prevPizzaId != resultSet.getInt(1))
                     {
-                        Pizza pizza = new Pizza (pizzaName,pizzaSize,ingredientList,cost);                    
+                        Pizza pizza = new Pizza (pizzaName,pizzaSize,ingredientList,cost); 
+                        pizza.setPizzaId(prevPizzaId);
                         pizzaList.add(pizza);
                         ingredientList.clear();
                     }
@@ -355,4 +353,109 @@ public class DataAccess {
 		
 		return null;
 	}
+        
+        /**
+	 * Inserts Bill and returns bill no 
+	 * @param pizzaName
+	 * @param pizzaSize
+	 * @return
+	 */
+        public int GenerateBillId(double totalCost, int branchId)
+        {
+             //DB code 
+            DataBase db = new DataBase(ConnectionType.ODBC);
+            int billId = 0; 
+             try 
+             {
+                Connection connection = db.getConnection();
+                
+                String query = "INSERT INTO BILL (stamp,cost,idBranch) VALUES(?,?,?)";
+               
+                //Prepare statement with query
+                 statement  = connection.prepareStatement(query);
+                 
+                 java.util.Date utilDate = new java.util.Date();
+
+                statement.setDate(1, new Date(utilDate.getTime()));
+                statement.setDouble(2, totalCost);
+                statement.setInt(3,branchId);
+                statement.executeUpdate();
+           
+               
+               query = "SELECT idBill FROM BILL WHERE stamp = ? and cost = ? and idBranch = ?";
+               statement  = connection.prepareStatement(query);
+               
+               statement.setDate(1, new Date(utilDate.getTime()));
+               statement.setDouble(2, totalCost);
+               statement.setInt(3,branchId);      
+               
+                resultSet = statement.executeQuery();
+                
+                while( resultSet.next() ){
+                    billId = resultSet.getInt(1);                  
+                }
+                
+                resultSet.close();
+                statement.close();
+                connection.close();
+            }
+            catch(SQLException e) {
+                System.err.println("SQL Error(s) as follows:");
+                while (e != null) {
+                    System.err.println("SQL Return Code: " + e.getSQLState());
+                    System.err.println("  Error Message: " + e.getMessage());
+                    System.err.println(" Vendor Message: " + e.getErrorCode());
+                    e = e.getNextException();
+                }	
+            } 
+            catch(Exception e) {
+                System.err.println(e);
+            }  
+             
+             return billId;
+        }
+        
+          /**
+	 * Inserts Bill and returns bill no 
+	 * @param pizzaName
+	 * @param pizzaSize
+	 * @return
+	 */
+        public void insertOrder(int billId, int pizzaId, int numofPizza)
+        {
+             //DB code 
+            DataBase db = new DataBase(ConnectionType.ODBC);
+          
+             try 
+             {
+                Connection connection = db.getConnection();
+                
+                String query = "INSERT INTO PIZZA_BILL (idPizza,idBill,numOfPizza) VALUES(?,?,?)";
+               
+                //Prepare statement with query
+                statement  = connection.prepareStatement(query);                
+
+                statement.setInt(1, pizzaId);
+                statement.setInt(2, billId);
+                statement.setInt(3,numofPizza);
+                statement.executeUpdate();//Insert to database
+        
+               
+                statement.close();
+                connection.close();
+            }
+            catch(SQLException e) {
+                System.err.println("SQL Error(s) as follows:");
+                while (e != null) {
+                    System.err.println("SQL Return Code: " + e.getSQLState());
+                    System.err.println("  Error Message: " + e.getMessage());
+                    System.err.println(" Vendor Message: " + e.getErrorCode());
+                    e = e.getNextException();
+                }	
+            } 
+            catch(Exception e) {
+                System.err.println(e);
+            }  
+            
+        }
 }
