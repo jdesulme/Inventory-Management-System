@@ -87,17 +87,7 @@ public class PizzaOrder extends javax.swing.JFrame {
             }
         });
 
-        jtblOrderTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Pizza Name", "Pizza Size", "Quantity", "Amount"
-            }
-        ));
+        jtblOrderTable.setModel(model);
         jtblOrderTable.setToolTipText("");
         jScrollPane1.setViewportView(jtblOrderTable);
 
