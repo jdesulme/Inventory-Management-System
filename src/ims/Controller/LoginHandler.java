@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
  * @author jdesulme
  */
 public class LoginHandler {
-    private String dbUser; 
+    public String dbUser; 
     private String dbPass;
     private String dbAccessType;
+    private boolean loginPanel = false;
     
     public LoginHandler(String inUsername, char[] inPassword) {
         DataAccess dataAccess  = new DataAccess();
@@ -33,8 +34,7 @@ public class LoginHandler {
         if( isPasswordCorrect(inPassword) ){
             FrontPage main = new FrontPage(dbAccessType);
             main.setVisible(true);
-            System.out.println("all good");
-           
+            loginPanel = true;
         } else {
             JOptionPane.showMessageDialog(null, 
                 "The password is incorrect please try again",
@@ -61,5 +61,7 @@ public class LoginHandler {
         return isCorrect;
     }
     
-    
+    public boolean isSuccessful(){
+        return loginPanel;
+    }
 }

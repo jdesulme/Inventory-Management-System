@@ -42,19 +42,13 @@ public class CheckInventory extends javax.swing.JFrame {
         txtYear = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtMonth = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCheckInventory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        LocationList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocationListActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Branch");
@@ -64,19 +58,13 @@ public class CheckInventory extends javax.swing.JFrame {
 
         Year.setText("Year");
 
-        txtYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtYearActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Month");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Check Inventory");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCheckInventory.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCheckInventory.setText("Check Inventory");
+        btnCheckInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCheckInventoryActionPerformed(evt);
             }
         });
 
@@ -126,7 +114,7 @@ public class CheckInventory extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCheckInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Year)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,7 +149,7 @@ public class CheckInventory extends javax.swing.JFrame {
                     .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jButton1)
+                .addComponent(btnCheckInventory)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -172,12 +160,7 @@ public class CheckInventory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtYearActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnCheckInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInventoryActionPerformed
         int month = Integer.parseInt(txtMonth.getText());
         int year = Integer.parseInt(txtYear.getText());
         String selected = LocationList.getSelectedItem().toString();
@@ -190,11 +173,7 @@ public class CheckInventory extends javax.swing.JFrame {
         uiInformation.Year = year;
         uiInformation.Month = month;
         
-        //String location= uiInformation.Locality.toString();
         if(eventHandler.HandleEvent(uiInformation)){
-           // jTable1.getModel().setValueAt(location,0,0);//uiInformation.Locality.toString());
-            //jTabel1.getModel().setValueAt(,0,1)
-            //DisplayInformationResult(uiInformation);
             DefaultTableModel model = new DefaultTableModel();
             DefaultTableModel model2 = new DefaultTableModel();
             jTable1.setModel(model);
@@ -202,36 +181,16 @@ public class CheckInventory extends javax.swing.JFrame {
             model2.setColumnIdentifiers(new String[]{"Branch","Month","Year","Total Cost"});
             model2.addRow(new String[] {uiInformation.Locality.toString(),uiInformation.Month.toString(),
                                             uiInformation.Year.toString(),Double.toString(uiInformation.TotalCost) });
-            //model.addRow(Double.toString(uiInformation.TotalCost.));
+      
             model.setColumnIdentifiers(new String[] {"Ingredient Name", "Quntity", "Unit", "Cost"});
-            //int i=0;
+    
             for (Ingredient ingredient : uiInformation.IngredientList) {   
-            model.addRow(new String[] { ingredient.getName(),Double.toString(ingredient.getQuantity()),
+                model.addRow(new String[] { ingredient.getName(),Double.toString(ingredient.getQuantity()),
                                                 ingredient.getUnitType(),Double.toString(ingredient.getCost())});
-            //model.addRow(row);
-            
-            /*
-            System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
-                                        ingredient.getQuantity(),
-                                        ingredient.getUnitType(),
-                                        ingredient.getCost()); 
-                                        * 
-                                        */
-            //int size =uiInformation.IngredientList.size();
-            //for( i=0; i<=size-1;i++){
-            //jTable1.getModel().setValueAt(ingredient.getName(),i,i+1);
-            //System.out.println(ingredient.getName());
-            //i++;
-            //}
-        }
-            //model.addRow(new String[]{"\nTotal cost: "+Double.toString(uiInformation.TotalCost)});
-       
-        }       
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void LocationListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LocationListActionPerformed
+            }       
+        }       
+    }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,49 +236,42 @@ public class CheckInventory extends javax.swing.JFrame {
     
     
     private void intializeUI(){
-        
         //EventHandler eventHandler = new EventHandler(event);
         for(Location locValue : Location.values() ){
-				
-            LocationList.addItem(locValue);
+	    LocationList.addItem(locValue);
         }
-        
-       // UIInformation uiInformation;
-        
     }
     
     /**
-	 * Formats & Displays the processed information result
-	 * @param result
-	 */
-	public void DisplayInformationResult(UIInformation result) {
-		
-		if(result!=null){
-                    //System.out.println(result.length);
-			System.out.println("====================Information Report====================");
-			System.out.print("Report :" + result.Locality.toString());
-			System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
-			System.out.println("==========================================================");
-			System.out.println("Ingredient Name        Quantity Unit    TotalCost");
-			System.out.println("==========================================================");
-			
-			for (Ingredient ingredient : result.IngredientList) {
-				
-				System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
-																   ingredient.getQuantity(),
-														           ingredient.getUnitType(),
-														           ingredient.getCost()); 
-			}
-			System.out.println("==========================================================");
-			System.out.println("Total Cost: $"+ result.TotalCost);
-			System.out.println("==========================================================");			
-		}
-	}
-	
+    * Formats & Displays the processed information result
+    * @param result
+    */
+    public void DisplayInformationResult(UIInformation result) {
+        if(result!=null){
+            System.out.println("====================Information Report====================");
+            System.out.print("Report :" + result.Locality.toString());
+            System.out.println("		Month :" + result.Month + "   Year :" + result.Year);
+            System.out.println("==========================================================");
+            System.out.println("Ingredient Name        Quantity Unit    TotalCost");
+            System.out.println("==========================================================");
+
+            for (Ingredient ingredient : result.IngredientList) {
+                System.out.printf("%-19s %,11.2f %-5s %,10.2f %n", ingredient.getName(), 
+                                ingredient.getQuantity(),
+                                ingredient.getUnitType(),
+                                ingredient.getCost()); 
+            }
+            
+            System.out.println("==========================================================");
+            System.out.println("Total Cost: $"+ result.TotalCost);
+            System.out.println("==========================================================");			
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox LocationList;
     private javax.swing.JLabel Year;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCheckInventory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

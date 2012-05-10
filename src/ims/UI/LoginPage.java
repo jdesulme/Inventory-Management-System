@@ -105,25 +105,20 @@ public class LoginPage extends javax.swing.JFrame {
         char[] pass = txtPassword.getPassword();
         
         if(!user.isEmpty() && user != null && pass.length > 0 && pass != null){
-            System.out.println(user + "  " + pass);
+            System.out.println(user);
             
             LoginHandler handleLogin = new LoginHandler(user, pass);
             
-            
-            
-            
-            
-            //TODO: create a function that makes a call to the db and checks
-            //TODO: once passed direct them to the correct screen
+            if( handleLogin.isSuccessful() ) {
+                 this.dispose();
+            }
+                     
         } else {
             JOptionPane.showMessageDialog(this, 
                     "Username and Password fields must be populated",
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);
         }
-        
-        
-        
         
     }//GEN-LAST:event_btnLoginActionPerformed
     
