@@ -17,11 +17,7 @@ import java.util.ArrayList;
 public class DataAccess {
         
     private PreparedStatement statement = null;
-    private ResultSet resultSet = null;
-    955
-    
-    
-    
+    private ResultSet resultSet = null;  
     
     
     
