@@ -29,7 +29,8 @@ public class UserHandler {
         
     }
     
-    public void removeUser(int id){
-        
+    public int removeUser(int id){
+        int result = dataAccess.RemoveUser(id);
+        return result;
     }
 }

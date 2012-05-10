@@ -18,10 +18,38 @@ public class DataAccess {
         
     private PreparedStatement statement = null;
     private ResultSet resultSet = null;
-    955
+   
     
     
-    
+    public int RemoveUser(int id){
+        DataBase db = new DataBase(ConnectionType.MYSQL);
+        int result = 0; 
+        
+        try {
+            Connection conn = db.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM login WHERE idLogin = ?");
+            pstmt.setInt(1, id);
+            result = pstmt.executeUpdate();
+            
+            pstmt.close();
+            conn.close();
+        }
+        catch(SQLException e) {
+            System.err.println("SQL Error(s) as follows:");
+            while (e != null) {
+                System.err.println("SQL Return Code: " + e.getSQLState());
+                System.err.println("  Error Message: " + e.getMessage());
+                System.err.println(" Vendor Message: " + e.getErrorCode());
+                e = e.getNextException();
+            }	
+        } 
+        catch(Exception e) {
+            System.err.println(e);
+        }  
+        
+        return result;
+                   
+    }
     
     
     

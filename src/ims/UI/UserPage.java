@@ -8,6 +8,7 @@ import ims.Controller.UserHandler;
 import ims.Model.Login;
 import java.util.*;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,6 +200,15 @@ public class UserPage extends javax.swing.JFrame {
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         this.userList.remove(count);
+        UserHandler handle = new UserHandler();
+        int result = handle.removeUser(count);
+        
+        if (result > 0) {
+            JOptionPane.showMessageDialog(this, 
+                    "This user has been successfully removed",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);            
+        }
         load();
         //remove from the db as well
     }//GEN-LAST:event_btnDeleteActionPerformed
