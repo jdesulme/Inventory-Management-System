@@ -21,12 +21,12 @@ public class UserHandler {
     
     public ArrayList<Login> getData() {
         ArrayList<Login> userList = dataAccess.GetLogin();
-    
         return userList;
     }
     
-    public void updateUser(){
-        
+    public int updateUser(int id, String user, String pass, String access){
+        int result = dataAccess.UpdateUser(id, user, pass, access);
+        return result;
     }
     
     public int removeUser(int id){

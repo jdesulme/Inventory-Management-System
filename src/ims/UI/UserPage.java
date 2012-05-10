@@ -208,6 +208,12 @@ public class UserPage extends javax.swing.JFrame {
                     "This user has been successfully removed",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);            
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                    "There has been an error please try again.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);   
+            
         }
         load();
         //remove from the db as well
@@ -224,12 +230,27 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        txtUser.getText();
-        txtPass.getText();
-        cmbType.getSelectedItem().toString();
+        String user = txtUser.getText();
+        String pass = txtPass.getText();
+        String access = cmbType.getSelectedItem().toString();
         
-        System.out.println( cmbType.getSelectedItem().toString() );
-        System.out.println( "user id: " + idUser);
+        UserHandler handle = new UserHandler();
+        int result = handle.updateUser(idUser, user, pass, access);
+        
+        if (result > 0) {
+            JOptionPane.showMessageDialog(this, 
+                    "This user has been successfully updated",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);            
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                    "There has been an error please try again.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);   
+            
+        }
+        
+     
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void validateRange() {

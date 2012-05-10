@@ -20,6 +20,41 @@ public class DataAccess {
     private ResultSet resultSet = null;
    
     
+    public int UpdateUser(int id, String user, String pass, String access){
+        DataBase db = new DataBase(ConnectionType.MYSQL);
+        int result = 0; 
+        
+        try {
+            Connection conn = db.getConnection();
+            CallableStatement cs = conn.prepareCall("{call sp_users(?,?,?,?)}");
+            cs.setInt(1, id);
+            cs.setString(2, user);
+            cs.setString(3, pass);
+            cs.setString(4, access);
+            result = cs.executeUpdate();
+            
+            cs.close();
+            conn.close();
+        }
+        catch(SQLException e) {
+            System.err.println("SQL Error(s) as follows:");
+            while (e != null) {
+                System.err.println("SQL Return Code: " + e.getSQLState());
+                System.err.println("  Error Message: " + e.getMessage());
+                System.err.println(" Vendor Message: " + e.getErrorCode());
+                e = e.getNextException();
+            }	
+        } 
+        catch(Exception e) {
+            System.err.println(e);
+        }  
+        
+        return result;        
+        
+        
+        
+    }
+    
     
     public int RemoveUser(int id){
         DataBase db = new DataBase(ConnectionType.MYSQL);
