@@ -9,6 +9,7 @@ package ims.Model;
  * @author Jean
  */
 public class Login {
+    private int id;
     private String username;
     private String password;
     private String accessType;
@@ -19,12 +20,19 @@ public class Login {
         this.accessType = "";
     }
     
+    public Login(int id, String username, String password, String accessType) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.accessType = accessType;
+    }
+    
     public Login(String username, String password, String accessType) {
         this.username = username;
         this.password = password;
         this.accessType = accessType;
     }
-
+    
     public String getPassword() {
         return password;
     }

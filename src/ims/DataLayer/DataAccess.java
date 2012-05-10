@@ -18,6 +18,42 @@ public class DataAccess {
         
     private PreparedStatement statement = null;
     private ResultSet resultSet = null;
+        
+    public ArrayList<Login> GetLogin(){
+            DataBase db = new DataBase(ConnectionType.MYSQL);
+            ArrayList<Login> loginInfo = new ArrayList<>();
+            
+            try {
+                Connection conn = db.getConnection();
+                Statement pstmt = conn.createStatement();
+                ResultSet rs = pstmt.executeQuery("SELECT idLogin, username, password, accessType FROM login");
+                
+                while( rs.next() ){
+                    Login result = new Login( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4) );
+                    loginInfo.add(result);
+                }
+                
+                rs.close();
+                pstmt.close();
+                conn.close();
+            }
+            catch(SQLException e) {
+                System.err.println("SQL Error(s) as follows:");
+                while (e != null) {
+                    System.err.println("SQL Return Code: " + e.getSQLState());
+                    System.err.println("  Error Message: " + e.getMessage());
+                    System.err.println(" Vendor Message: " + e.getErrorCode());
+                    e = e.getNextException();
+                }	
+            } 
+            catch(Exception e) {
+                System.err.println(e);
+            }  
+            
+            return loginInfo;
+        }
+    
+    
     
         public ArrayList<Login> GetLogin(String user){
             DataBase db = new DataBase(ConnectionType.MYSQL);
