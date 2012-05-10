@@ -38,7 +38,7 @@ public class CheckInventory extends javax.swing.JFrame {
         LocationList = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Year = new javax.swing.JLabel();
         txtYear = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtMonth = new javax.swing.JTextField();
@@ -62,7 +62,7 @@ public class CheckInventory extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Period");
 
-        jLabel3.setText("From Date:");
+        Year.setText("Year");
 
         txtYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +70,7 @@ public class CheckInventory extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("To Date:");
+        jLabel4.setText("Month");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Check Inventory");
@@ -128,9 +128,10 @@ public class CheckInventory extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Year)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,7 +142,7 @@ public class CheckInventory extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -155,7 +156,7 @@ public class CheckInventory extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LocationList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addComponent(Year)
                     .addComponent(jLabel4)
                     .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +186,7 @@ public class CheckInventory extends javax.swing.JFrame {
         
         //UI information Modal object
         UIInformation uiInformation = new UIInformation();
-        uiInformation.Locality = Location.valueOf(LocationList.getSelectedItem().toString());
+        uiInformation.Locality = Location.valueOf(selected);
         uiInformation.Year = year;
         uiInformation.Month = month;
         
@@ -198,7 +199,7 @@ public class CheckInventory extends javax.swing.JFrame {
             DefaultTableModel model2 = new DefaultTableModel();
             jTable1.setModel(model);
             jTable2.setModel(model2);
-            model2.setColumnIdentifiers(new String[]{"Bracnh","Month","Year","Total Cost"});
+            model2.setColumnIdentifiers(new String[]{"Branch","Month","Year","Total Cost"});
             model2.addRow(new String[] {uiInformation.Locality.toString(),uiInformation.Month.toString(),
                                             uiInformation.Year.toString(),Double.toString(uiInformation.TotalCost) });
             //model.addRow(Double.toString(uiInformation.TotalCost.));
@@ -317,10 +318,10 @@ public class CheckInventory extends javax.swing.JFrame {
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox LocationList;
+    private javax.swing.JLabel Year;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

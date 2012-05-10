@@ -15,7 +15,33 @@ public class FrontPage extends javax.swing.JFrame {
      */
     public FrontPage() {
         initComponents();
+    }
+    
+    public FrontPage(String userType) {
+        initComponents();
         
+        switch (userType) {
+            case "admin":
+                break;
+            
+            case "branch":
+                this.btnEstimateWaste.setEnabled(false);
+                break;
+            
+            case "cashier":
+                this.btnEstimateWaste.setEnabled(false);
+                this.btnCheckInventory.setEnabled(false);
+                break;
+            
+            case "warehouse":
+                this.btnEstimateWaste.setEnabled(false);
+                break;
+            
+            default:
+                this.btnEstimateWaste.setEnabled(false);
+                this.btnEstimateWaste.setEnabled(false);
+                this.btnCheckInventory.setEnabled(false);
+        }        
     }
 
     /**

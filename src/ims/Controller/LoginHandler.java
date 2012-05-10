@@ -6,42 +6,48 @@ package ims.Controller;
 
 import ims.DataLayer.*;
 import ims.Model.Login;
+import ims.UI.FrontPage;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jdesulme
  */
 public class LoginHandler {
-    private String user; 
-    private String pass;
-    private String accessType;
+    private String dbUser; 
+    private String dbPass;
+    private String dbAccessType;
     
     public LoginHandler(String inUsername, char[] inPassword) {
         DataAccess dataAccess  = new DataAccess();
         
-        ArrayList<Login> loginList = new ArrayList<Login>();
-        loginList = dataAccess.GetLogin(inUsername);
+        ArrayList<Login> loginList = dataAccess.GetLogin(inUsername);
         
         for (Login login : loginList) {
-            user = login.getUsername();
-            pass = login.getPassword();
-            accessType = login.getAccessType();
+            dbUser = login.getUsername();
+            dbPass = login.getPassword();
+            dbAccessType = login.getAccessType();
         }
-         
+      
         if( isPasswordCorrect(inPassword) ){
-            //redirect the to the correct correct screen
+            FrontPage main = new FrontPage(dbAccessType);
+            main.setVisible(true);
+            System.out.println("all good");
+           
+        } else {
+            JOptionPane.showMessageDialog(null, 
+                "The password is incorrect please try again",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
-         
+        
     }
 
-    //process login information and redirect to the correct screen
-    
-    
     private boolean isPasswordCorrect(char[] input ) {
-        boolean isCorrect = true;
+        boolean isCorrect;
         
-        char[] correctPass = this.pass.toCharArray();
+        char[] correctPass = this.dbPass.toCharArray();
         
         if( input.length != correctPass.length ) {
             isCorrect = false;

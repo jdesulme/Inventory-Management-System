@@ -4,10 +4,14 @@
 package ims.DataLayer;
 
 
-import ims.DataLayer.Common.*;
+import ims.DataLayer.Common.ConnectionType;
+import ims.DataLayer.Common.DataBase;
 import ims.Model.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.*;
 
 /**
  * @author Minh, Kumar, Jean
@@ -21,10 +25,10 @@ public class DataAccess {
             
             try {
                 Connection conn = db.getConnection();
-                Statement stmt = conn.createStatement();
-                String query = "SELECT username, password, accessType FROM login WHERE username = " + user;
+                PreparedStatement pstmt = conn.prepareStatement("SELECT username, password, accessType FROM login WHERE username = ?");
+                pstmt.setString(1, user);
                 
-                ResultSet rs = stmt.executeQuery(query);
+                ResultSet rs = pstmt.executeQuery();
                 
                 while( rs.next() ){
                     Login result = new Login( rs.getString(1), rs.getString(2), rs.getString(3) );
@@ -32,7 +36,7 @@ public class DataAccess {
                 }
                 
                 rs.close();
-                stmt.close();
+                pstmt.close();
                 conn.close();
             }
             catch(SQLException e) {
