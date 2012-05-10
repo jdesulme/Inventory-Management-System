@@ -328,32 +328,7 @@ public class DataAccess {
 		pizzaList.add(meatLoverSmall);*/
 		
 		return pizzaList;
-	}
-	
-	
-	/**
-	 * Returns the ingredients for a specified pizza name and pizza size
-	 * @param pizzaName
-	 * @param pizzaSize
-	 * @return
-	 */
-	public ArrayList<Ingredient> GetIngredients(String pizzaName, String pizzaSize){
-		
-		ArrayList<Pizza> pizzaList = GetPizzaList();
-		
-		for (Pizza pizza : pizzaList) {
-			
-			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize)) {
-				
-				return pizza.getIngredients();
-			
-			}
-			
-		}
-		
-		return null;
-	}
-        
+	}        
         /**
 	 * Inserts Bill and returns bill no 
 	 * @param pizzaName

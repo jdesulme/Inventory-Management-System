@@ -64,7 +64,7 @@
               <Component id="btnEstimateWaste" min="-2" pref="172" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCheckInventory" min="-2" pref="165" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,7 +77,7 @@
                   <Component id="btnEstimateWaste" alignment="3" min="-2" pref="97" max="-2" attributes="0"/>
                   <Component id="btnCheckInventory" alignment="3" min="-2" pref="97" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
