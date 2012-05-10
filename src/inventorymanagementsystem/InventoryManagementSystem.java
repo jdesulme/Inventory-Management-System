@@ -4,7 +4,6 @@
  */
 package inventorymanagementsystem;
 
-import ims.UI.FrontPage;
 import ims.UI.LoginPage;
 /**
  *

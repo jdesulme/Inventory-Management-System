@@ -4,17 +4,27 @@
  */
 package ims.UI;
 
+import ims.Controller.EventHandler;
+import ims.Model.*;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author kumar
  */
-public class EstimateWaste extends javax.swing.JPanel {
+public class EstimateWaste extends javax.swing.JFrame {
 
+    UIEstimation uiEstimation = null;
+    ArrayList<Pizza> pizzaList = null;
+  
     /**
      * Creates new form EstimateWaste
      */
     public EstimateWaste() {
         initComponents();
+        initializeUI();
     }
 
     /**
@@ -26,19 +36,19 @@ public class EstimateWaste extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblDate = new javax.swing.JLabel();
-        txtDate = new javax.swing.JFormattedTextField();
-        btnGenerate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblOrderTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNoOfPizza = new javax.swing.JTextField();
+        jcmbPizzaType = new javax.swing.JComboBox();
+        jcmbPizzaSize = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
-        lblDate.setFont(new java.awt.Font("Tahoma", 1, 18));
-        lblDate.setText("Report Date:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnGenerate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGenerate.setText("Generate Report");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblOrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,45 +56,229 @@ public class EstimateWaste extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Pizza Name", "Pizza Size", "Quantity", "Amount"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jtblOrderTable.setToolTipText("");
+        jScrollPane1.setViewportView(jtblOrderTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel1.setText("Pizza Type");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel2.setText("Pizza Size");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel3.setText("No Of Pizza Made:");
+
+        jcmbPizzaType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jcmbPizzaSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Estimate Waste");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcmbPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                        .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNoOfPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(130, 130, 130)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerate))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcmbPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoOfPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            // TODO add your handling code here:
+         if(!txtNoOfPizza.getText().equalsIgnoreCase(""))
+        {
+          Pizza pizza =  getPizzaFromList(jcmbPizzaType.getSelectedItem().toString(),jcmbPizzaSize.getSelectedItem().toString());
+          
+          uiEstimation = new UIEstimation();
+          if(pizza == null) 
+          {
+              JOptionPane.showMessageDialog(null,"Select proper Pizza"); 
+              return;
+          }
+          uiEstimation.pizzaName = pizza.getPizzaName();
+          uiEstimation.pizzaSize = pizza.getPizzaSize();
+          uiEstimation.pizzaNumber = Integer.parseInt(txtNoOfPizza.getText());
+          uiEstimation.pizzaList = pizzaList;
+          
+          EventHandler eventHandler = new EventHandler(Event.ESTIMATE_QUANTITY);
+          if(eventHandler.HandleEvent(uiEstimation))
+          {
+           DefaultTableModel model = new DefaultTableModel();
+           jtblOrderTable.setModel(model);
+             model.setColumnIdentifiers(new String[] {"Ingredient Name", "Quntity", "Unit", "Cost"});
+             if(uiEstimation.IngredientList!=null && uiEstimation.IngredientList.size()>0 )
+             {
+                for (Ingredient ingredient : uiEstimation.IngredientList)
+                {   
+                    model.addRow(new String[] { ingredient.getName(),Double.toString(ingredient.getQuantity()),
+                                                    ingredient.getUnitType(),Double.toString(ingredient.getCost())});
+
+                }  
+             }
+             else
+             {
+                 JOptionPane.showMessageDialog(null,"No data retrieved");
+             }
+          }
+                   
+        }  
+        else
+        {
+           JOptionPane.showMessageDialog(null,"Enter the number of pizza"); 
+        }       
+    }//GEN-LAST:event_jButton1ActionPerformed
+   /**
+     * @param args the command line arguments
+     */
+ //------------------------------- UI Related functions -----------------------------------
+    /* 
+     * initializeUI to prepopulate the UI with pizza type
+     * 
+     */
+    
+    private void initializeUI(){
+        EventHandler eventHandler = new EventHandler(Event.DISPLAY_PIZZAS);
+        
+        UIEstimation uiEstimate = new UIEstimation();
+        if(eventHandler.HandleEvent(uiEstimate))
+        {
+           pizzaList = uiEstimate.pizzaList;
+        }      
+        
+        //Get the unique pizza name
+        ArrayList<String> uniquePizzaList  = new ArrayList<String>();
+        for(Pizza pizza : pizzaList )
+        {
+          if(!uniquePizzaList.contains(pizza.getPizzaName()))
+          {
+              uniquePizzaList.add(pizza.getPizzaName());
+          }
+        } 
+        
+        //Clear the combo list
+        jcmbPizzaType.removeAllItems();
+        //Add the Pizza Type combo box
+        for(String pizzaName : uniquePizzaList)
+        {
+            jcmbPizzaType.addItem(pizzaName);
+        }
+        
+        jcmbPizzaSize.removeAllItems();
+        //Add the pizza size to combo box
+        for(Pizza pizza : pizzaList )
+        {
+            jcmbPizzaSize.removeItem(pizza.getPizzaSize());
+            jcmbPizzaSize.addItem(pizza.getPizzaSize());
+        }
+    }
+    
+    private Pizza getPizzaFromList(String pizzaName, String pizzaSize) {
+       
+        if(pizzaList != null)
+        {
+            for(Pizza pizza : pizzaList)
+            {
+               if(pizza.getPizzaName().equals(pizzaName) && pizza.getPizzaSize().equals(pizzaSize))
+               {
+                  return pizza; 
+               }               
+            }
+        }
+        return null;
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(EstimateWaste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(EstimateWaste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(EstimateWaste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(EstimateWaste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new EstimateWaste().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerate;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblDate;
-    private javax.swing.JFormattedTextField txtDate;
+    private javax.swing.JComboBox jcmbPizzaSize;
+    private javax.swing.JComboBox jcmbPizzaType;
+    private javax.swing.JTable jtblOrderTable;
+    private javax.swing.JTextField txtNoOfPizza;
     // End of variables declaration//GEN-END:variables
 }

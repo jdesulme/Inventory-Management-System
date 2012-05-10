@@ -5,6 +5,7 @@ package ims.Controller;
 
 import ims.DataLayer.DataAccess;
 import ims.Model.Ingredient;
+import ims.Model.Pizza;
 import ims.Model.UIEstimation;
 import java.util.ArrayList;
 
@@ -24,7 +25,9 @@ public class Estimation {
 		boolean isDone = false;
 		DataAccess dataAccess  = new DataAccess();
 		ArrayList<Ingredient> EstimationReport = ui.IngredientList;
-		ArrayList<Ingredient> estimationList = dataAccess.GetIngredients(ui.pizzaName, ui.pizzaSize);
+                if(ui.pizzaList==null)  ui.pizzaList = dataAccess.GetPizzaList();
+                
+		ArrayList<Ingredient> estimationList = GetIngredients(ui.pizzaList, ui.pizzaName, ui.pizzaSize);
 		
 		//checks to see if ingredients exist
 		if( estimationList !=null && !estimationList.isEmpty() ) {
@@ -66,6 +69,26 @@ public class Estimation {
 		}
 		
 		return isTrue;
+	}
+        /**
+	 * Returns the ingredients for a specified pizza name and pizza size
+	 * @param pizzaName
+	 * @param pizzaSize
+	 * @return
+	 */
+	public ArrayList<Ingredient> GetIngredients(ArrayList<Pizza> pizzaList, String pizzaName, String pizzaSize){
+		
+		for (Pizza pizza : pizzaList) {
+			
+			if (pizza.getPizzaName().equalsIgnoreCase(pizzaName) && pizza.getPizzaSize().equalsIgnoreCase(pizzaSize)) {
+				
+				return pizza.getIngredients();
+			
+			}
+			
+		}
+		
+		return null;
 	}
         
 }

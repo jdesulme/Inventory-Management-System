@@ -65,6 +65,11 @@ public class PizzaOrder extends javax.swing.JFrame {
         jlblTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         cmbPizzaType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -82,7 +87,17 @@ public class PizzaOrder extends javax.swing.JFrame {
             }
         });
 
-        jtblOrderTable.setModel(model);
+        jtblOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Pizza Name", "Pizza Size", "Quantity", "Amount"
+            }
+        ));
         jtblOrderTable.setToolTipText("");
         jScrollPane1.setViewportView(jtblOrderTable);
 
@@ -170,7 +185,7 @@ public class PizzaOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+       
         if(!txtPizzaNum.getText().equalsIgnoreCase(""))
         {
           Pizza pizza =  getPizzaFromList(cmbPizzaType.getSelectedItem().toString(),cmbPizzaSize.getSelectedItem().toString());
@@ -197,9 +212,19 @@ public class PizzaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-        // TODO add your handling code here:
 
+        EventHandler eventHandler = new EventHandler(Event.ORDER);
+        uiOrder.setTotalCost(totalBillCost);
+        if(eventHandler.HandleEvent(uiOrder)){
+             JOptionPane.showMessageDialog(null,"Order Placed successfully");
+             this.dispose();
+        }
     }//GEN-LAST:event_btnOrderActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

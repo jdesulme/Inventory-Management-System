@@ -14,6 +14,7 @@ import java.util.Map;
 public class UIOrder extends EntityBase {
     
     private Map<Pizza,Integer> orderList;
+    private double totalCost;
    
     //Getter and setter definitions
     public void addOrder(Pizza pizza,Integer noOfPizza){
@@ -39,6 +40,20 @@ public class UIOrder extends EntityBase {
     
     public Map<Pizza,Integer> gerOrderList(){
         return orderList;
+    }
+
+    /**
+     * @return the totalCost
+     */
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    /**
+     * @param totalCost the totalCost to set
+     */
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
     
 }

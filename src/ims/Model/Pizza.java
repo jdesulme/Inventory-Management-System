@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Pizza {
 	
 	//Declare attributes
+        private int pizzaId;//To improve database performance
 	private String pizzaName;
 	private String pizzaSize;
         private double cost;
@@ -88,5 +89,19 @@ public class Pizza {
      */
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    /**
+     * @return the pizzaId
+     */
+    public int getPizzaId() {
+        return pizzaId;
+    }
+
+    /**
+     * @param pizzaId the pizzaId to set
+     */
+    public void setPizzaId(int pizzaId) {
+        this.pizzaId = pizzaId;
     }
 }
