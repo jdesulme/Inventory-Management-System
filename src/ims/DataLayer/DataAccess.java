@@ -97,22 +97,20 @@ public class DataAccess {
                         Ingredient ingredient = new Ingredient(rs.getString(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12));
                         ingredientList.add(ingredient);
                         
-                        if( rs.next() && idBranch != rs.getInt(1) ) {
-                            String bName = rs.getString(2);
-                            String bAddress = rs.getString(3);
-                            String bPhone = rs.getString(4);
-                            String bCity = rs.getString(5);
-                            
-                            branch = new Branch(bName, bAddress, bPhone, bCity);
-                        }
+                        String bName = rs.getString(2);
+                        String bAddress = rs.getString(3);
+                        String bPhone = rs.getString(4);
+                        String bCity = rs.getString(5);
+                        
+                        
                     
                         if ( rs.next() && idOrder != rs.getInt(6) ) {
                             String oOrderDate = rs.getString(7);
                             double oOrderCost = rs.getDouble(8);
-                            
+                            branch = new Branch(bName, bAddress, bPhone, bCity);
                             order = new Order(idOrder, oOrderDate, branch, oOrderCost, ingredientList);
                             orderList.add(order);
-                            ingredientList.clear();
+                            ingredientList = new ArrayList<Ingredient>();
                         }
                         
                         rs.previous();
@@ -292,12 +290,23 @@ public class DataAccess {
                     String pizzaSize = resultSet.getString(8);
                     double cost = resultSet.getDouble(9);
                     
-                    if(resultSet.next()  && prevPizzaId != resultSet.getInt(1))
+                    if(resultSet.next())
+                    {
+                        if(prevPizzaId != resultSet.getInt(1))
+                        {
+                            Pizza pizza = new Pizza (pizzaName,pizzaSize,ingredientList,cost); 
+                            pizza.setPizzaId(prevPizzaId);
+                            pizzaList.add(pizza);
+                            ingredientList = new ArrayList<Ingredient>();
+                        }
+                    }
+                    else
                     {
                         Pizza pizza = new Pizza (pizzaName,pizzaSize,ingredientList,cost); 
                         pizza.setPizzaId(prevPizzaId);
                         pizzaList.add(pizza);
-                        ingredientList.clear();
+                        //ingredientList.clear();
+                        break;
                     }
                     resultSet.previous();
                 }
