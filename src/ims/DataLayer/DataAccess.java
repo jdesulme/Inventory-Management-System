@@ -50,8 +50,7 @@ public class DataAccess {
         return result;
                    
     }
-    
-    
+
     
     public void CreateProcedure() {
         DataBase db = new DataBase(ConnectionType.MYSQL);
