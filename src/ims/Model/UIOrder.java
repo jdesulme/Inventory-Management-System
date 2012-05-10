@@ -23,8 +23,17 @@ public class UIOrder extends EntityBase {
         
         //Check for pizza already exist in the order list
         //If it is not present add it to the list
-        if(!orderList.containsKey(pizza)){
+        if(!orderList.containsKey(pizza))
+        {
             orderList.put(pizza,noOfPizza);  
+        }
+        else
+        {
+          int num = orderList.get(pizza);
+          num += noOfPizza;
+          
+          orderList.remove(pizza);
+          orderList.put(pizza, num);
         }
     }
     

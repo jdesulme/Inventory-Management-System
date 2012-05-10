@@ -23,7 +23,17 @@ public class Pizza {
 		this.pizzaSize = inSize;
 		this.ingredients = inIngredients;
 	}
-
+       
+        /*
+	 * Constructor with cost
+	 */
+	public Pizza (String inName, String inSize, ArrayList <Ingredient> inIngredients,double cost)
+	{
+		this.pizzaName = inName;
+		this.pizzaSize = inSize;
+		this.ingredients = inIngredients;
+                this.cost = cost;
+	}
 	/*
 	 * Accessor for pizzaName
 	 */

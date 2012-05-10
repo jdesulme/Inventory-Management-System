@@ -25,22 +25,35 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane1" pref="464" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="614" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="cmbPizzaType" max="32767" attributes="0"/>
-                          <Component id="lblPizzaType" pref="107" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblPizzaType" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="cmbPizzaType" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblPizzaNum" pref="78" max="32767" attributes="0"/>
-                          <Component id="txtPizzaNum" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblPizzaSize" pref="194" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="cmbPizzaSize" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
-                      <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtPizzaNum" min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblPizzaNum" min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="296" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="446" max="32767" attributes="0"/>
                       <Component id="btnOrder" min="-2" pref="168" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -52,21 +65,32 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPizzaType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPizzaNum" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblPizzaType" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPizzaNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblPizzaSize" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cmbPizzaType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPizzaNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtPizzaNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbPizzaType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbPizzaSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnOrder" pref="55" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnOrder" min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,6 +133,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Add To Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -117,16 +144,17 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="jtblOrderTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                <Column editable="true" title="Pizza Name" type="java.lang.Object"/>
+                <Column editable="true" title="Pizza Size" type="java.lang.Object"/>
+                <Column editable="true" title="Quantity" type="java.lang.Object"/>
+                <Column editable="true" title="Amount" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
       </SubComponents>
@@ -137,6 +165,29 @@
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Place Order"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPizzaSize">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Pizza Size"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbPizzaSize">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
