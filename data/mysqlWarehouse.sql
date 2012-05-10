@@ -20,6 +20,12 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Login` (
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) )
 ENGINE = InnoDB;
 
+INSERT INTO `login` (`idLogin`, `username`, `password`, `accesstype`) VALUES
+(1, 'owner', 'owner', 'admin'),
+(2, 'branch1', 'branch1', 'branch'),
+(3, 'branch2', 'branch2', 'branch'),
+(4, 'cashier', 'cashier', 'cashier'),
+(5, 'warehouse', 'warehouse', 'warehouse');
 
 -- -----------------------------------------------------
 -- Table `warehouse`.`Branch`
@@ -38,7 +44,9 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Branch` (
   PRIMARY KEY (`idBranch`) )
 ENGINE = InnoDB;
 
-
+INSERT INTO `branch` (`idBranch`, `name`, `address`, `city`, `state`, `zip`, `phone`, `fax`) VALUES
+(1, 'Branch1', '123 Second Street', 'Rochester', 'NY', '14623', '8489923412', '8489923345'),
+(2, 'Branch2', '456 Community Street', 'West Henrietta', 'NY', '14586', '8488273456', '8486673429');
 -- -----------------------------------------------------
 -- Table `warehouse`.`Item`
 -- -----------------------------------------------------
@@ -49,11 +57,21 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Item` (
   `name` VARCHAR(45) NULL ,
   `quantityInStock` INT NULL ,
   `cost` DECIMAL NULL ,
-  `unitType` VARCHAR(5) NULL ,
+  `unitType` VARCHAR(45) NULL ,
   PRIMARY KEY (`idItem`) )
 ENGINE = InnoDB;
 
 
+INSERT INTO `item` (`idItem`, `name`, `quantityInStock`, `cost`, `unitType`) VALUES
+(1, 'Pepperoni', 100, 20, 'kilograms'),
+(2, 'Cheese', 100, 10, 'kilograms'),
+(3, 'Oil', 100, 2, 'kilograms'),
+(4, 'Egg', 100, 3, 'dozens'),
+(5, 'Dough', 100, 5, 'kilograms'),
+(6, 'Bacon', 100, 10, 'kilograms'),
+(7, 'Tuna', 100, 50, 'kilograms'),
+(8, 'Milk', 100, 2, 'liters'),
+(9, 'Italian Susage', 10000, 10, 'grams');
 -- -----------------------------------------------------
 -- Table `warehouse`.`Order`
 -- -----------------------------------------------------
@@ -73,7 +91,11 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Order` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+INSERT INTO `order` (`idOrder`, `date`, `cost`, `idBranch`) VALUES
+(1, '2011-01-01 08:20:08', '170', 1),
+(2, '2011-01-01 14:19:38', '42.2', 2),
+(3, '2011-05-05 09:55:28', '100', 1),
+(4, '2011-05-05 05:26:53', '520', 2);
 -- -----------------------------------------------------
 -- Table `warehouse`.`Order_Item`
 -- -----------------------------------------------------
@@ -98,6 +120,18 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Order_Item` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+INSERT INTO `order_item` (`idOrder`, `idItem`, `quantity`) VALUES
+(1, 1, 3),
+(1, 2, 10),
+(1, 3, 5),
+(2, 3, 600),
+(2, 4, 12),
+(2, 9, 500),
+(3, 5, 10),
+(3, 6, 5),
+(4, 7, 10),
+(4, 8, 10);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

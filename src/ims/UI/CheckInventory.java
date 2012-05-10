@@ -5,9 +5,9 @@
 package ims.UI;
 
 import ims.Controller.*;
-import ims.Controller.EventHandler;
 import ims.Model.*;
 import ims.View.*;
+import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +24,7 @@ public class CheckInventory extends javax.swing.JFrame {
     public CheckInventory() {
         initComponents();
         intializeUI();
+
     }
 
     /**

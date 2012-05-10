@@ -87,16 +87,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEstimateWaste">
       <Properties>
         <Property name="text" type="java.lang.String" value="Estimate Waste"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstimateWasteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCheckInventory">
       <Properties>
         <Property name="text" type="java.lang.String" value="Check Inventory"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCheckInventoryActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

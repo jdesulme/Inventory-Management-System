@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2012 at 03:02 AM
+-- Generation Time: May 10, 2012 at 04:09 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -99,8 +99,8 @@ INSERT INTO `login` (`idLogin`, `username`, `password`, `accesstype`) VALUES
 (1, 'owner', 'owner', 'admin'),
 (2, 'branch1', 'branch1', 'branch'),
 (3, 'branch2', 'branch2', 'branch'),
-(4, 'Cashier', 'Cashier', 'cashier'),
-(5, 'Warehouse', 'Warehouse', 'warehouse');
+(4, 'cashier', 'cashier', 'cashier'),
+(5, 'warehouse', 'warehouse', 'warehouse');
 
 -- --------------------------------------------------------
 

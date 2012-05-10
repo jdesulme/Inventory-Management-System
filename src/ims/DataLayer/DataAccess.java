@@ -21,7 +21,7 @@ public class DataAccess {
         
         public ArrayList<Login> GetLogin(String user){
             DataBase db = new DataBase(ConnectionType.MYSQL);
-            ArrayList<Login> loginInfo = new ArrayList<Login>();
+            ArrayList<Login> loginInfo = new ArrayList<>();
             
             try {
                 Connection conn = db.getConnection();

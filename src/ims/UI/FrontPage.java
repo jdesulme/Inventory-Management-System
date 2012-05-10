@@ -65,10 +65,25 @@ public class FrontPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnOrder.setText("Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
+            }
+        });
 
         btnEstimateWaste.setText("Estimate Waste");
+        btnEstimateWaste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstimateWasteActionPerformed(evt);
+            }
+        });
 
         btnCheckInventory.setText("Check Inventory");
+        btnCheckInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckInventoryActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -132,6 +147,21 @@ public class FrontPage extends javax.swing.JFrame {
     private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mniExitActionPerformed
+
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        PizzaOrder orderPage = new PizzaOrder();
+        orderPage.setVisible(true);
+    }//GEN-LAST:event_btnOrderActionPerformed
+
+    private void btnEstimateWasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstimateWasteActionPerformed
+        EstimateWaste estimatePage = new EstimateWaste();
+        estimatePage.setVisible(true);        
+    }//GEN-LAST:event_btnEstimateWasteActionPerformed
+
+    private void btnCheckInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInventoryActionPerformed
+        CheckInventory invPage = new CheckInventory();
+        invPage.setVisible(true);
+    }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
     /**
      * @param args the command line arguments
