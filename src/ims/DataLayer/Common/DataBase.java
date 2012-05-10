@@ -16,7 +16,7 @@ public class DataBase {
         
         switch(connectionType){
             
-            case ODBC:connection = new ODBCDataAccess().GetConnection();
+            case ODBC:connection = new ODBCDataAccess().GetConnection();break;
             case MYSQL:connection = new MySQLDataAccess().GetConnection();        
         } 
      }

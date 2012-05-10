@@ -19,6 +19,9 @@ import java.util.ArrayList;
  */
 public class DataAccess {
         
+    private PreparedStatement statement = null;
+    private ResultSet resultSet = null;
+    
         public ArrayList<Login> GetLogin(String user){
             DataBase db = new DataBase(ConnectionType.MYSQL);
             ArrayList<Login> loginInfo = new ArrayList<>();
@@ -186,7 +189,43 @@ public class DataAccess {
 	 */
 	public ArrayList<Pizza> GetPizzaList() {
 		
-		//Create pizzaList
+            //DB code 
+            DataBase db = new DataBase(ConnectionType.ODBC);
+            ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
+             try 
+             {
+                Connection connection = db.getConnection();
+                
+                statement = connection.prepareStatement("SELECT * FROM PIZZA");
+                
+                resultSet = statement.executeQuery();
+                
+                while( resultSet.next() ){
+                    
+                    String pizzaName = resultSet.getString(2);
+                    String pizzaSize = resultSet.getString(3);
+                    double cost = resultSet.getInt(4);
+                    Pizza pizza = new Pizza (pizzaName,pizzaSize,null,cost);
+                    pizzaList.add(pizza);
+                }
+                
+                resultSet.close();
+                statement.close();
+                connection.close();
+            }
+            catch(SQLException e) {
+                System.err.println("SQL Error(s) as follows:");
+                while (e != null) {
+                    System.err.println("SQL Return Code: " + e.getSQLState());
+                    System.err.println("  Error Message: " + e.getMessage());
+                    System.err.println(" Vendor Message: " + e.getErrorCode());
+                    e = e.getNextException();
+                }	
+            } 
+            catch(Exception e) {
+                System.err.println(e);
+            }  
+	/*//Create pizzaList
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
 		
 		//Create base ingredients dough, oil, and cheese for differensize of pizza
@@ -265,7 +304,7 @@ public class DataAccess {
 		pizzaList.add(pepperoniSmall);
 		pizzaList.add(meatLoverLarge);
 		pizzaList.add(meatLoverMedium);
-		pizzaList.add(meatLoverSmall);
+		pizzaList.add(meatLoverSmall);*/
 		
 		return pizzaList;
 	}

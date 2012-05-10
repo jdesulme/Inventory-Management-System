@@ -81,12 +81,27 @@ public class PizzaOrder extends javax.swing.JFrame {
             }
         });
 
-        jtblOrderTable.setModel(model);
+        jtblOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Pizza Name", "Pizza Size", "Quantity", "Amount"
+            }
+        ));
         jtblOrderTable.setToolTipText("");
         jScrollPane1.setViewportView(jtblOrderTable);
 
         btnOrder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnOrder.setText("Place Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
+            }
+        });
 
         lblPizzaSize.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPizzaSize.setText("Pizza Size");
@@ -161,7 +176,11 @@ public class PizzaOrder extends javax.swing.JFrame {
           Pizza pizza =  getPizzaFromList(cmbPizzaType.getSelectedItem().toString(),cmbPizzaSize.getSelectedItem().toString());
           
           double totalCost  = Integer.parseInt(txtPizzaNum.getText()) * pizza.getCost();
-            
+          
+          if( uiOrder == null ) uiOrder = new UIOrder(); 
+          
+          uiOrder.addOrder(pizza, Integer.parseInt(txtPizzaNum.getText()));
+          
           String[] row = { pizza.getPizzaName(),
                            pizza.getPizzaSize(),
                            txtPizzaNum.getText(),
@@ -176,6 +195,11 @@ public class PizzaOrder extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Enter the number of pizza"); 
         }        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     /**
      * @param args the command line arguments
