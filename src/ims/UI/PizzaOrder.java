@@ -30,11 +30,10 @@ public class PizzaOrder extends javax.swing.JFrame {
 	DefaultTableModel model = new DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             columnNames);
+      double totalBillCost = 0.0;
     /**
      * Creates new form PizzaOrder
      */
@@ -62,6 +61,8 @@ public class PizzaOrder extends javax.swing.JFrame {
         btnOrder = new javax.swing.JButton();
         lblPizzaSize = new javax.swing.JLabel();
         cmbPizzaSize = new javax.swing.JComboBox();
+        txtTotalCost = new javax.swing.JTextField();
+        jlblTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,17 +82,7 @@ public class PizzaOrder extends javax.swing.JFrame {
             }
         });
 
-        jtblOrderTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Pizza Name", "Pizza Size", "Quantity", "Amount"
-            }
-        ));
+        jtblOrderTable.setModel(model);
         jtblOrderTable.setToolTipText("");
         jScrollPane1.setViewportView(jtblOrderTable);
 
@@ -107,6 +98,8 @@ public class PizzaOrder extends javax.swing.JFrame {
         lblPizzaSize.setText("Pizza Size");
 
         cmbPizzaSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jlblTotal.setText("Total Cost:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +129,11 @@ public class PizzaOrder extends javax.swing.JFrame {
                                 .addComponent(lblPizzaNum, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(166, 166, 166))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 446, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jlblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
                         .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
@@ -162,7 +159,10 @@ public class PizzaOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblTotal))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -176,7 +176,7 @@ public class PizzaOrder extends javax.swing.JFrame {
           Pizza pizza =  getPizzaFromList(cmbPizzaType.getSelectedItem().toString(),cmbPizzaSize.getSelectedItem().toString());
           
           double totalCost  = Integer.parseInt(txtPizzaNum.getText()) * pizza.getCost();
-          
+          totalBillCost += totalCost;
           if( uiOrder == null ) uiOrder = new UIOrder(); 
           
           uiOrder.addOrder(pizza, Integer.parseInt(txtPizzaNum.getText()));
@@ -187,7 +187,7 @@ public class PizzaOrder extends javax.swing.JFrame {
                            String.valueOf(totalCost)};
           System.out.println(pizza.getPizzaName());
           model.insertRow(0,row);
-          
+          txtTotalCost.setText(String.valueOf(totalBillCost));
                    
         }  
         else
@@ -217,9 +217,7 @@ public class PizzaOrder extends javax.swing.JFrame {
         if(eventHandler.HandleEvent(uiEstimate))
         {
            pizzaList = uiEstimate.pizzaList;
-        }
-         
-        
+        }      
         
         //Get the unique pizza name
         ArrayList<String> uniquePizzaList  = new ArrayList<String>();
@@ -307,11 +305,13 @@ public class PizzaOrder extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbPizzaSize;
     private javax.swing.JComboBox cmbPizzaType;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlblTotal;
     private javax.swing.JTable jtblOrderTable;
     private javax.swing.JLabel lblPizzaNum;
     private javax.swing.JLabel lblPizzaSize;
     private javax.swing.JLabel lblPizzaType;
     private javax.swing.JTextField txtPizzaNum;
+    private javax.swing.JTextField txtTotalCost;
     // End of variables declaration//GEN-END:variables
 
 }

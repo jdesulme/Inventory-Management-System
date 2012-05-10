@@ -235,17 +235,40 @@ public class DataAccess {
              {
                 Connection connection = db.getConnection();
                 
-                statement = connection.prepareStatement("SELECT * FROM PIZZA");
+                String query = "SELECT Pizza.idPizza, Pizza_Ingredient.idIngredient, Pizza_Ingredient.quantity, Ingredient.name AS Ingredient_name, Ingredient.cost AS Ingredient_cost, Ingredient.unitType, Pizza.name AS Pizza_name, Pizza.size, Pizza.cost AS Pizza_cost"
+                        + " FROM Pizza INNER JOIN (Ingredient INNER JOIN Pizza_Ingredient ON Ingredient.[idIngredient] = Pizza_Ingredient.[idIngredient]) ON Pizza.[idPizza] = Pizza_Ingredient.[idPizza]";
+
+
+                //Prepare statement with query
+                statement = connection.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
+								ResultSet.CONCUR_READ_ONLY);
                 
                 resultSet = statement.executeQuery();
                 
+                int prevPizzaId = 0;
+                ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+                
                 while( resultSet.next() ){
                     
-                    String pizzaName = resultSet.getString(2);
-                    String pizzaSize = resultSet.getString(3);
-                    double cost = resultSet.getInt(4);
-                    Pizza pizza = new Pizza (pizzaName,pizzaSize,null,cost);
-                    pizzaList.add(pizza);
+                    prevPizzaId = resultSet.getInt(1);
+                    double quantity = resultSet.getDouble(3);
+                    String name = resultSet.getString(4);
+                    double ingredientCost = resultSet.getDouble(5);
+                    String unitType = resultSet.getString(6);
+                    Ingredient ingredient  = new  Ingredient(name,quantity,ingredientCost,unitType);
+                    ingredientList.add(ingredient);              
+          
+                    String pizzaName = resultSet.getString(7);
+                    String pizzaSize = resultSet.getString(8);
+                    double cost = resultSet.getDouble(9);
+                    
+                    if(resultSet.next()  && prevPizzaId != resultSet.getInt(1))
+                    {
+                        Pizza pizza = new Pizza (pizzaName,pizzaSize,ingredientList,cost);                    
+                        pizzaList.add(pizza);
+                        ingredientList.clear();
+                    }
+                    resultSet.previous();
                 }
                 
                 resultSet.close();
