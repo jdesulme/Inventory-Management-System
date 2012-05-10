@@ -11,6 +11,7 @@ public class Pizza {
 	//Declare attributes
 	private String pizzaName;
 	private String pizzaSize;
+        private double cost;
 	private ArrayList <Ingredient> ingredients;
 	
 	/*
@@ -64,4 +65,18 @@ public class Pizza {
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+
+    /**
+     * @return the cost
+     */
+    public double getCost() {
+        return cost;
+    }
+
+    /**
+     * @param cost the cost to set
+     */
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 }
