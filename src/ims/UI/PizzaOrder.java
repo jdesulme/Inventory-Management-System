@@ -58,7 +58,7 @@ public class PizzaOrder extends javax.swing.JFrame {
         lblPizzaNum = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtblOrderTable = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         btnOrder = new javax.swing.JButton();
         lblPizzaSize = new javax.swing.JLabel();
         cmbPizzaSize = new javax.swing.JComboBox();
@@ -75,18 +75,27 @@ public class PizzaOrder extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setText("Add To Order");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
-        jtblOrderTable.setModel(model);
-        jtblOrderTable.setToolTipText("");
-        jScrollPane1.setViewportView(jtblOrderTable);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         btnOrder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnOrder.setText("Place Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
+            }
+        });
 
         lblPizzaSize.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPizzaSize.setText("Pizza Size");
@@ -100,28 +109,26 @@ public class PizzaOrder extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPizzaSize, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbPizzaType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPizzaType, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtPizzaNum, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAdd))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblPizzaNum, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(166, 166, 166))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 446, Short.MAX_VALUE)
+                        .addGap(0, 421, Short.MAX_VALUE)
                         .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
@@ -129,26 +136,21 @@ public class PizzaOrder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPizzaType)
-                        .addComponent(lblPizzaNum))
-                    .addComponent(lblPizzaSize, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnAdd))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPizzaNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPizzaType)
+                    .addComponent(lblPizzaNum)
+                    .addComponent(lblPizzaSize))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbPizzaType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPizzaNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd)
+                    .addComponent(cmbPizzaSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(btnOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -158,8 +160,14 @@ public class PizzaOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!txtPizzaNum.getText().equalsIgnoreCase(""))
         {
+            //get the selected pizza object
           Pizza pizza =  getPizzaFromList(cmbPizzaType.getSelectedItem().toString(),cmbPizzaSize.getSelectedItem().toString());
           
+          if( uiOrder == null ) uiOrder = new UIOrder();
+          
+          uiOrder.addOrder(pizza, Integer.parseInt(txtPizzaNum.getText()));
+          
+          //calculate total cost
           double totalCost  = Integer.parseInt(txtPizzaNum.getText()) * pizza.getCost();
             
           String[] row = { pizza.getPizzaName(),
@@ -176,6 +184,11 @@ public class PizzaOrder extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Enter the number of pizza"); 
         }        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +296,7 @@ public class PizzaOrder extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbPizzaSize;
     private javax.swing.JComboBox cmbPizzaType;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtblOrderTable;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblPizzaNum;
     private javax.swing.JLabel lblPizzaSize;
     private javax.swing.JLabel lblPizzaType;

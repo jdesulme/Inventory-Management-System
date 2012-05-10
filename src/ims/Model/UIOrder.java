@@ -26,6 +26,13 @@ public class UIOrder extends EntityBase {
         if(!orderList.containsKey(pizza)){
             orderList.put(pizza,noOfPizza);  
         }
+        else{
+          int num = orderList.get(pizza);
+          num += noOfPizza;
+          
+          orderList.remove(pizza);
+          orderList.put(pizza, num);
+        }
     }
     
     public Map<Pizza,Integer> gerOrderList(){
