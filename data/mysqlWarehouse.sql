@@ -56,7 +56,7 @@ CREATE  TABLE IF NOT EXISTS `warehouse`.`Item` (
   `idItem` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
   `quantityInStock` INT NULL ,
-  `cost` DECIMAL NULL ,
+  `cost` DOUBLE NULL ,
   `unitType` VARCHAR(45) NULL ,
   PRIMARY KEY (`idItem`) )
 ENGINE = InnoDB;
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `warehouse`.`Order` ;
 CREATE  TABLE IF NOT EXISTS `warehouse`.`Order` (
   `idOrder` INT NOT NULL AUTO_INCREMENT ,
   `date` DATETIME NULL ,
-  `cost` VARCHAR(45) NULL ,
+  `cost` DOUBLE NULL ,
   `idBranch` INT NULL ,
   PRIMARY KEY (`idOrder`) ,
   INDEX `idBranchFK` (`idBranch` ASC) ,

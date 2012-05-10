@@ -69,38 +69,65 @@ public class DataAccess {
                 db.getConnection();
                     
 		//Create orderList
-		ArrayList<Order> orderList = new ArrayList<Order>();
-		try {
+		ArrayList<Order> orderList = new ArrayList<>();
+                ArrayList<Ingredient> ingredientList = new ArrayList<>();
+		
+                try {
                     ResultSet rs;
                     Connection conn = db.getConnection();
-                    String query = "SELECT o.idOrder, o.date, o.cost, i.name, i.quantityInStock, i.cost as unitPrice, i.unittype, oi.quantity " +
-                            "FROM `order` o " +
-                            "JOIN order_item oi ON (o.idOrder = oi.idOrder) " +
-                            "JOIN item i ON (i.idItem = oi.idItem)";
+                    String query = "SELECT b.idBranch, b.name, b.address, b.phone, b.city, o.idOrder, o.date, o.cost, "
+                            + "i.name, i.quantityInStock, i.cost as unitPrice, i.unittype, oi.quantity "
+                            + "FROM `warehouse`.`order` o "
+                            + "JOIN `warehouse`.`branch` b ON (o.idBranch = b.idBranch) "
+                            + "JOIN `warehouse`.`order_item` oi ON (o.idOrder = oi.idOrder) "
+                            + "JOIN `warehouse`.`item` i ON (i.idItem = oi.idItem)";
                     Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                     rs = stmt.executeQuery(query);
                     
+                    int idBranch = 0;
+                    int idOrder = 0;
+                    
                     while ( rs.next() ) {
-                        Branch branch = new Branch("Branch1", "123 Second Street", "8489923412", "Ho Chi Minh");
+                        Branch branch = null;
+                        Order order;
                         
-                        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-			Ingredient pepperoni = new Ingredient ("Pepperoni", 3, 20, "kilograms");
-			Ingredient cheese = new Ingredient ("Cheese", 10, 10, "kilograms");
-			Ingredient oil = new Ingredient ("Oil", 5, 2, "liters");
-			ingredients.add(pepperoni);
-			ingredients.add(cheese);
-			ingredients.add(oil);
-			Order order = new Order(1, "01/01/2011", branch, 170, ingredients);
+                        idBranch = rs.getInt(1);
+                        idOrder = rs.getInt(6);
                         
-                        orderList.add(order);
+                        Ingredient ingredient = new Ingredient(rs.getString(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12));
+                        ingredientList.add(ingredient);
+                        
+                        if( rs.next() && idBranch != rs.getInt(1) ) {
+                            String bName = rs.getString(2);
+                            String bAddress = rs.getString(3);
+                            String bPhone = rs.getString(4);
+                            String bCity = rs.getString(5);
+                            
+                            branch = new Branch(bName, bAddress, bPhone, bCity);
+                        }
+                    
+                        if ( rs.next() && idOrder != rs.getInt(6) ) {
+                            String oOrderDate = rs.getString(7);
+                            double oOrderCost = rs.getDouble(8);
+                            
+                            order = new Order(idOrder, oOrderDate, branch, oOrderCost, ingredientList);
+                            orderList.add(order);
+                            ingredientList.clear();
+                        }
+                        
+                        rs.previous();
                     }
+                    
+                    stmt.close();
+                    rs.close();
+                    conn.close();       
                     
                 }
                 catch(SQLException e) {
                     System.err.println("SQL Error(s) as follows:");
                     while (e != null) {
                         System.err.println("SQL Return Code: " + e.getSQLState());
-                        System  .err.println("  Error Message: " + e.getMessage());
+                        System.err.println("  Error Message: " + e.getMessage());
                         System.err.println(" Vendor Message: " + e.getErrorCode());
                         e = e.getNextException();
                     }	
@@ -109,8 +136,9 @@ public class DataAccess {
                     System.err.println(e);
                 }  
 
+
                 
-                
+                /*
                 
 		//Create objects according to the selected location
 		if (tempLocal == Location.Both)
@@ -218,6 +246,8 @@ public class DataAccess {
 			orderList.add(order2);
 			orderList.add(order4);
 		}
+                */
+                
 		return orderList;
 	}
 
