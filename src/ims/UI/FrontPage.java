@@ -58,6 +58,7 @@ public class FrontPage extends javax.swing.JFrame {
         btnCheckInventory = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mniUserManage = new javax.swing.JMenuItem();
         mniSwitch = new javax.swing.JMenuItem();
         mniExit = new javax.swing.JMenuItem();
         mnuAbout = new javax.swing.JMenu();
@@ -86,6 +87,14 @@ public class FrontPage extends javax.swing.JFrame {
         });
 
         jMenu1.setText("File");
+
+        mniUserManage.setText("User Management");
+        mniUserManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniUserManageActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniUserManage);
 
         mniSwitch.setText("Switch User");
         mniSwitch.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +206,11 @@ public class FrontPage extends javax.swing.JFrame {
         invPage.setVisible(true);
     }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
+    private void mniUserManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniUserManageActionPerformed
+        UserPage usrPage = new UserPage();
+        usrPage.setVisible(true);
+    }//GEN-LAST:event_mniUserManageActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +260,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenuItem mniSwitch;
+    private javax.swing.JMenuItem mniUserManage;
     private javax.swing.JMenu mnuAbout;
     // End of variables declaration//GEN-END:variables
 }
