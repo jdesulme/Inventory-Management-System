@@ -48,7 +48,7 @@ public class ODBCDataAccess implements IDataAccess {
         
      try{
             // LOAD Driver
-            Class.forName(DataBaseConstants.ODBC_DATASOURCE);
+            Class.forName(DataBaseConstants.ODBC_DRIVER);
             System.out.println("You have loaded a driver!\n");
 	} 
         catch(java.lang.ClassNotFoundException e) {

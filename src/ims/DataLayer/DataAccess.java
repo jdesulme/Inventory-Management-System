@@ -7,10 +7,7 @@ package ims.DataLayer;
 import ims.DataLayer.Common.ConnectionType;
 import ims.DataLayer.Common.DataBase;
 import ims.Model.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -65,16 +62,47 @@ public class DataAccess {
 		
 		Location tempLocal = locality;
                 //Sample Code
-		DataBase db = new DataBase(ConnectionType.ODBC);
+		DataBase db = new DataBase(ConnectionType.MYSQL);
                 db.getConnection();
                     
 		//Create orderList
 		ArrayList<Order> orderList = new ArrayList<Order>();
-		
+		try {
+                    Connection conn = db.getConnection();
+                    String query = "SELECT o.idOrder, o.date, o.cost, i.name, i.quantityInStock, i.cost as unitPrice, i.unittype, oi.quantity " +
+                            "FROM `order` o " +
+                            "JOIN order_item oi ON (o.idOrder = oi.idOrder) " +
+                            "JOIN item i ON (i.idItem = oi.idItem)";
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    
+                    while ( rs.next() ) {
+                        
+                        
+                    }
+                    
+                }
+                catch(SQLException e) {
+                    System.err.println("SQL Error(s) as follows:");
+                    while (e != null) {
+                        System.err.println("SQL Return Code: " + e.getSQLState());
+                        System  .err.println("  Error Message: " + e.getMessage());
+                        System.err.println(" Vendor Message: " + e.getErrorCode());
+                        e = e.getNextException();
+                    }	
+                } 
+                catch(Exception e) {
+                    System.err.println(e);
+                }  
+
+                
+                
+                
 		//Create objects according to the selected location
 		if (tempLocal == Location.Both)
 		{
 			//Create branch objects
+                    
 			Branch branch1 = new Branch("Branch1", "123 Second Street", "8489923412", "Ho Chi Minh");
 			Branch branch2 = new Branch("Branch2", "456 Community Street", "8488273456", "Ho Chi Minh");
 				
