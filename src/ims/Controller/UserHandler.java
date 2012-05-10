@@ -13,13 +13,14 @@ import java.util.ArrayList;
  * @author Jean
  */
 public class UserHandler {
-
+    DataAccess dataAccess  = new DataAccess();
+    
     public UserHandler() {
-        
+        dataAccess.CreateProcedure();
     }
     
     public ArrayList<Login> getData() {
-        DataAccess dataAccess  = new DataAccess();
+        
         
         ArrayList<Login> userList = dataAccess.GetLogin();
     

@@ -207,7 +207,7 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void validateRange() {
-        if (count > userList.size() || count <= 0 ) {
+        if (count > userList.size() || count < 0 ) {
             count = 0;
         }
     }

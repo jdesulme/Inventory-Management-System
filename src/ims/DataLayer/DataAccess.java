@@ -18,7 +18,72 @@ public class DataAccess {
         
     private PreparedStatement statement = null;
     private ResultSet resultSet = null;
+    
+    public void CreateProcedure() {
+        DataBase db = new DataBase(ConnectionType.MYSQL);
         
+        String queryDrop = "DROP PROCEDURE IF EXISTS sp_users";
+        
+        String query = "CREATE PROCEDURE sp_users "
+            + " ( "
+            + " IN p_id INT(11),  "
+            + " IN p_user	 VARCHAR(45), "
+            + " IN p_pass	 VARCHAR(45), "
+            + " IN p_access	VARCHAR(45) "
+            + " ) "
+            + "BEGIN "
+            + " UPDATE login "
+            + " SET "
+            + " username = p_user, "
+            + " password = p_pass,"
+            + " accessType = p_access"
+            + " WHERE idLogin = p_id ; "
+            + "END ";
+        
+        try {
+            Connection conn = db.getConnection();
+            Statement pstmtDrop = conn.createStatement();
+            pstmtDrop.execute(queryDrop);
+            pstmtDrop.close();
+            
+        }
+        catch(SQLException e) {
+            System.err.println("SQL Error(s) as follows:");
+            while (e != null) {
+                System.err.println("SQL Return Code: " + e.getSQLState());
+                System.err.println("  Error Message: " + e.getMessage());
+                System.err.println(" Vendor Message: " + e.getErrorCode());
+                e = e.getNextException();
+            }	
+        } 
+        catch(Exception e) {
+            System.err.println(e);
+        }      
+        
+        
+        try {
+            Connection conn = db.getConnection();
+            Statement pstmt = conn.createStatement();
+            pstmt.executeUpdate(query);
+            pstmt.close();
+            conn.close();
+        }
+        catch(SQLException e) {
+            System.err.println("SQL Error(s) as follows:");
+            while (e != null) {
+                System.err.println("SQL Return Code: " + e.getSQLState());
+                System.err.println("  Error Message: " + e.getMessage());
+                System.err.println(" Vendor Message: " + e.getErrorCode());
+                e = e.getNextException();
+            }	
+        } 
+        catch(Exception e) {
+            System.err.println(e);
+        }  
+    }
+    
+    
+    
     public ArrayList<Login> GetLogin(){
             DataBase db = new DataBase(ConnectionType.MYSQL);
             ArrayList<Login> loginInfo = new ArrayList<>();
