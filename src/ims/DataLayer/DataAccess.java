@@ -71,17 +71,28 @@ public class DataAccess {
 		//Create orderList
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		try {
+                    ResultSet rs;
                     Connection conn = db.getConnection();
                     String query = "SELECT o.idOrder, o.date, o.cost, i.name, i.quantityInStock, i.cost as unitPrice, i.unittype, oi.quantity " +
                             "FROM `order` o " +
                             "JOIN order_item oi ON (o.idOrder = oi.idOrder) " +
                             "JOIN item i ON (i.idItem = oi.idItem)";
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
+                    Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    rs = stmt.executeQuery(query);
                     
                     while ( rs.next() ) {
+                        Branch branch = new Branch("Branch1", "123 Second Street", "8489923412", "Ho Chi Minh");
                         
+                        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+			Ingredient pepperoni = new Ingredient ("Pepperoni", 3, 20, "kilograms");
+			Ingredient cheese = new Ingredient ("Cheese", 10, 10, "kilograms");
+			Ingredient oil = new Ingredient ("Oil", 5, 2, "liters");
+			ingredients.add(pepperoni);
+			ingredients.add(cheese);
+			ingredients.add(oil);
+			Order order = new Order(1, "01/01/2011", branch, 170, ingredients);
                         
+                        orderList.add(order);
                     }
                     
                 }
