@@ -9,6 +9,7 @@ package ims.Model;
  * @author Jean
  */
 public class Login {
+
     private int id;
     private String username;
     private String password;
@@ -31,6 +32,14 @@ public class Login {
         this.username = username;
         this.password = password;
         this.accessType = accessType;
+    }
+ 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getPassword() {

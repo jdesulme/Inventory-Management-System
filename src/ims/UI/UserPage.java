@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 public class UserPage extends javax.swing.JFrame {
     ArrayList<Login> userList = null;
     int count = 0;
-        
+    int idUser = 0;    
     /**
      * Creates new form UserPage
      */
@@ -79,6 +79,11 @@ public class UserPage extends javax.swing.JFrame {
         cmbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +159,6 @@ public class UserPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtPass)
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,6 +186,7 @@ public class UserPage extends javax.swing.JFrame {
     private void load(){
         validateRange();
         
+        idUser = this.userList.get(count).getId();
         String user = this.userList.get(count).getUsername();
         String pass = this.userList.get(count).getPassword();
         String access = this.userList.get(count).getAccessType();
@@ -193,7 +198,9 @@ public class UserPage extends javax.swing.JFrame {
     
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        this.userList.remove(count);
+        load();
+        //remove from the db as well
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
@@ -205,6 +212,15 @@ public class UserPage extends javax.swing.JFrame {
         count++;
         load();
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        txtUser.getText();
+        txtPass.getText();
+        cmbType.getSelectedItem().toString();
+        
+        System.out.println( cmbType.getSelectedItem().toString() );
+        System.out.println( "user id: " + idUser);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void validateRange() {
         if (count > userList.size() || count < 0 ) {

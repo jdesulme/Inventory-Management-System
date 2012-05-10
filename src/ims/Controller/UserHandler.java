@@ -20,11 +20,16 @@ public class UserHandler {
     }
     
     public ArrayList<Login> getData() {
-        
-        
         ArrayList<Login> userList = dataAccess.GetLogin();
     
         return userList;
+    }
+    
+    public void updateUser(){
+        
+    }
+    
+    public void removeUser(int id){
         
     }
 }
