@@ -4,10 +4,16 @@
  */
 package ims.UI;
 
+import com.mysql.jdbc.DatabaseMetaData;
 import ims.Controller.UserHandler;
-import ims.Model.Login;
-import java.util.*;
-import javax.swing.JComboBox;
+import ims.DataLayer.Common.ConnectionType;
+import ims.DataLayer.Common.DataBase;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,15 +21,26 @@ import javax.swing.JOptionPane;
  * @author Jean
  */
 public class UserPage extends javax.swing.JFrame {
-    ArrayList<Login> userList = null;
-    int count = 0;
+    DataBase db = null;
+    ResultSet rs = null;
+    Connection conn = null;
+    Statement pstmt = null;
     int idUser = 0;    
+
     /**
      * Creates new form UserPage
      */
-    public UserPage() {
+    public UserPage() throws SQLException {
         initComponents();
         initializeUI();
+
+        DatabaseMetaData dmd = (DatabaseMetaData) conn.getMetaData();
+        if(dmd.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY))
+                System.out.println("Support \tTYPE_FORWARD_ONLY");
+        if(dmd.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE))
+                System.out.println("Support \tTYPE_SCROLL_INSENSITIVE");	
+        if(dmd.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE))
+                System.out.println("Support \tTYPE_SCROLL_SENSITIVE");
 
     }
 
@@ -67,6 +84,11 @@ public class UserPage extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("User Management");
@@ -172,25 +194,20 @@ public class UserPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void initializeUI(){
+    private void initializeUI() throws SQLException{
         //populate the combo box
         String[] options = {"admin", "cashier", "branch", "warehouse"};
         cmbType.setModel(new javax.swing.DefaultComboBoxModel(options));
         
-        //gets all the existing data
-        UserHandler handle = new UserHandler();
-        this.userList = handle.getData();
-        
+        GetLogin();
         load();
     }
     
-    private void load(){
-        validateRange();
-        
-        idUser = this.userList.get(count).getId();
-        String user = this.userList.get(count).getUsername();
-        String pass = this.userList.get(count).getPassword();
-        String access = this.userList.get(count).getAccessType();
+    private void load() throws SQLException{
+        idUser = rs.getInt(1);
+        String user = rs.getString(2);
+        String pass = rs.getString(3);
+        String access = rs.getString(4);
         
         txtUser.setText(user);
         txtPass.setText(pass);
@@ -199,15 +216,15 @@ public class UserPage extends javax.swing.JFrame {
     
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        this.userList.remove(count);
         UserHandler handle = new UserHandler();
-        int result = handle.removeUser(count);
+        int result = handle.removeUser(idUser);
         
         if (result > 0) {
             JOptionPane.showMessageDialog(this, 
                     "This user has been successfully removed",
                     "Success",
-                    JOptionPane.INFORMATION_MESSAGE);            
+                    JOptionPane.INFORMATION_MESSAGE);  
+            GetLogin();
         } else {
             JOptionPane.showMessageDialog(this, 
                     "There has been an error please try again.",
@@ -215,18 +232,38 @@ public class UserPage extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);   
             
         }
-        load();
-        //remove from the db as well
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        count--;
-        load();
+        try {
+            if (rs.previous()) {
+                
+                load();
+            }
+            else{
+                rs.last();
+                load();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        count++;
-        load();
+        try {
+            if (rs.next()) {
+                load();
+            }
+            else{
+                rs.first();
+                load();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPage.class.getName()).log(Level.SEVERE, null, ex);
+        }     
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -241,24 +278,59 @@ public class UserPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, 
                     "This user has been successfully updated",
                     "Success",
-                    JOptionPane.INFORMATION_MESSAGE);            
-        } else {
+                    JOptionPane.INFORMATION_MESSAGE);  
+            
+            GetLogin();
+            
+        } 
+        else {
             JOptionPane.showMessageDialog(this, 
                     "There has been an error please try again.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);   
-            
-        }
+        }     
         
-     
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void validateRange() {
-        if (count > userList.size() || count < 0 ) {
-            count = 0;
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            rs.close();
+            pstmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+           
+            
+    }//GEN-LAST:event_formWindowClosing
+
     
+    private void GetLogin(){
+        db = new DataBase(ConnectionType.MYSQL);
+        
+        try {
+            conn = db.getConnection();
+            pstmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = pstmt.executeQuery("SELECT idLogin, username, password, accessType FROM login");
+            
+            rs.next();
+        }
+        catch(SQLException e) {
+            System.err.println("SQL Error(s) as follows:");
+            while (e != null) {
+                System.err.println("SQL Return Code: " + e.getSQLState());
+                System.err.println("  Error Message: " + e.getMessage());
+                System.err.println(" Vendor Message: " + e.getErrorCode());
+                e = e.getNextException();
+            }	
+        } 
+        catch(Exception e) {
+            System.err.println(e);
+        }  
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -296,7 +368,21 @@ public class UserPage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new UserPage().setVisible(true);
+                try {
+                    new UserPage().setVisible(true);
+                }         
+                catch(SQLException e) {
+                    System.err.println("SQL Error(s) as follows:");
+                    while (e != null) {
+                        System.err.println("SQL Return Code: " + e.getSQLState());
+                        System.err.println("  Error Message: " + e.getMessage());
+                        System.err.println(" Vendor Message: " + e.getErrorCode());
+                        e = e.getNextException();
+                    }	
+                } 
+                catch(Exception e) {
+                    System.err.println(e);
+                } 
             }
         });
     }

@@ -158,7 +158,7 @@ public class DataAccess {
             
             try {
                 Connection conn = db.getConnection();
-                Statement pstmt = conn.createStatement();
+                Statement pstmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = pstmt.executeQuery("SELECT idLogin, username, password, accessType FROM login");
                 
                 while( rs.next() ){

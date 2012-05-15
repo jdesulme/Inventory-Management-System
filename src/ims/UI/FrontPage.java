@@ -4,6 +4,10 @@
  */
 package ims.UI;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author kumar
@@ -207,8 +211,14 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCheckInventoryActionPerformed
 
     private void mniUserManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniUserManageActionPerformed
-        UserPage usrPage = new UserPage();
-        usrPage.setVisible(true);
+        UserPage usrPage;
+        try {
+            usrPage = new UserPage();
+            usrPage.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrontPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_mniUserManageActionPerformed
 
     /**
