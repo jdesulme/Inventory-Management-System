@@ -31,10 +31,13 @@ public class UserPage extends javax.swing.JFrame {
      * Creates new form UserPage
      */
     public UserPage() throws SQLException {
+        db = new DataBase(ConnectionType.MYSQL);
+        conn = db.getConnection();
         initComponents();
         initializeUI();
-
+        
         DatabaseMetaData dmd = (DatabaseMetaData) conn.getMetaData();
+        System.out.println("testing here!!");
         if(dmd.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY))
                 System.out.println("Support \tTYPE_FORWARD_ONLY");
         if(dmd.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE))
@@ -307,13 +310,13 @@ public class UserPage extends javax.swing.JFrame {
 
     
     private void GetLogin(){
-        db = new DataBase(ConnectionType.MYSQL);
+        
         
         try {
             conn = db.getConnection();
             pstmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = pstmt.executeQuery("SELECT idLogin, username, password, accessType FROM login");
-            
+ 
             rs.next();
         }
         catch(SQLException e) {
